@@ -1,2 +1,4 @@
 # Appunti-del-corso-Sistemi-e-circuiti-elettrici-lineari-a.a.-2025-2026
-File LaTeX e immagini relative al corso Circuiti e sistemi elettrici lineari tenuto dal dott. Popoli per i corsi di Ingegneria biomedica e Ingegneria elettronica presso il campus di Cesena dell'Università di Bologna
+File LaTeX e immagini relative al corso Circuiti e sistemi elettrici lineari tenuto dal dott. Popoli per i corsi di Ingegneria biomedica e Ingegneria elettronica presso il campus di Cesena dell'Università di Bologna.
+Questi appunti sono in una forma non rifinita: potrebbero contenere numerosi refusi, e diverse immagini potrebbero essere ottenute in maniera più elegante tramite librerie LaTeX (per alcuni riferimenti si vedano quelle nelle sezioni più avanzate del documento). Il file sorgente è condiviso proprio allo scopo di consentire a futuri studenti di rivedere, ampliare e migliorare questi appunti, a beneficio di tutti. 
+In forza della licenza imposta sul documento, le modifiche dovranno essere rese pubblico, a beneficio degli altri studenti.
