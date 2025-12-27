@@ -1,0 +1,68 @@
+\section{Componenti dinamici}
+\subsection{Condensatore ideale}
+\begin{dfn}[Condensatore ideale]
+	Componente di un circuito a parametri concentrati in cui si "concentra" la proprietà della \textsl{capacità} ($C$).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{condensatore}
+		\caption{Rappresentazione schematizzata e simbolo in un circuito a parametri concentrati di un condensatore ideale}
+		\label{fig:condensatore}
+	\end{figure}
+	\[q(t) = C v(t)\]
+	\[\frac{d}{dt}q(t) = C \frac{d}{dt} v(t)\]
+\end{dfn}
+\begin{legge}[Legge costitutiva del condensatore ideale]
+	\[i(t) = C \frac{d}{dt} v(t)\]
+	\[v(t) = \frac{1}{C} \int_{-\infty}^t i(t)dt\]
+	Classificazione:
+	\begin{itemize}
+		\item lineare 
+		\item controllato in tensione o in corrente 
+		\item con memoria (dinamico)
+		\item se $v(t) = cost$, si comporta come un circuito aperto.
+		\item componente passivo \[W_A(t) = C \int_{-\infty}^t v(t) \frac{dv(t)}{dt} = C \int_0^{v(t)} v dv = \frac{1}{2}Cv^2(t) \geq 0\] 
+		L'energia immagazzinata nel condensatore è dovuta al campo elettrico. Si dice dunque che $v(t)$ è la variabile di stato di un condensatore, perchè, da sola, ne determina lo stato (Energia).
+	\end{itemize}
+\end{legge}
+Osserviamo la proprietà di continuità di $v(t)$.\\
+Se $v(t)$ è discontinua al tempo $t= \tau$
+\[v(\tau ^-) \neq v(\tau ^+)\]
+\[\Rightarrow i(\tau) = C \left. \frac{d v(t)}{dt} \right \vert_{\tau} = \infty\]
+Perciò varrebbe l'assurdo \[P_A(\tau) = v(\tau) i(\tau) = \infty \]
+Se ne conclude che non è possibile avere una tensione discontinua ai capi di un condensatore. Ossia $v(\tau^-) = v(\tau^+)\quad \forall \tau$.
+\\
+Per un condensatore piano, $C=\varepsilon_0 \varepsilon_r \frac{S}{d}$.
+
+
+\subsection{Induttore ideale}
+\begin{dfn}[Induttore ideale]
+	Componente di un circuito a parametri concentrati in cui si "concentra" la proprietà dell'\textsl{induttanza} ($L$).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{induttore}
+		\caption{Rappresentazione schematizzata e simbolo in un circuito a parametri concentrati di un induttore ideale}
+		\label{fig:induttore}
+	\end{figure}
+	\[\Phi (\vec B, t) = L i(t)\]
+	\[\frac{d}{dt}\Phi(\vec B, t) = L \frac{d}{dt} i(t)\]
+\end{dfn}
+\begin{legge}[Legge costitutiva dell'induttore ideale]
+	\[v(t) = L \frac{d}{dt} i(t)\]
+	\[i(t) = \frac{1}{L} \int_{-\infty}^t v(t)dt\]
+	Classificazione:
+	\begin{itemize}
+		\item lineare
+		\item controllato in corrente o in tensione
+		\item con memoria (dinamico)
+		\item se $i(t) = cost$, si comporta come un cortocircuito.
+		\item componente passivo \[W_A(t) = L \int_{-\infty}^t i(t) \frac{di(t)}{dt} = L \int_0^{v(t)} i di = \frac{1}{2}Li^2(t) \geq 0\]
+		L'energia immagazzinata nell'induttore è dovuta al campo magnetico. $i(t)$ è la variabile di stato dell'induttore.
+	\end{itemize}
+\end{legge}
+Osserviamo la proprietà di continuità di $i(t)$.\\
+Se $i(t)$ è discontinua al tempo $t= \tau$
+\[i(\tau ^-) \neq i(\tau ^+)\]
+\[\Rightarrow v(\tau) = L \left .\frac{d i(t)}{dt} \right |_{\tau} = \infty\]
+Perciò varrebbe l'assurdo \[P_A(\tau) = v(\tau) i(\tau) = \infty \]
+Se ne conclude che non è possibile avere una corrente discontinua ai capi di un induttore. Ossia $i(\tau^-) = i(\tau^+)\quad \forall \tau$.
+\\

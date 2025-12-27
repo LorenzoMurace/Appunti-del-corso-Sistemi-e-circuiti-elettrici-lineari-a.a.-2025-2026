@@ -1,0 +1,275 @@
+\section{Metodi generali per analisi dei circuiti}
+Passiamo in rassegna metodi che permettano la soluzione di circuiti di complessità arbitraria.\\
+Un metodo \textsl{a forza bruta} consiste nel risolvere un sistema con LKC per ogni superficie chiusa, LKT per ogni sequenza chiusa di nodi e le leggi costitutive di ogni componente. Porta sicuramente a una soluzione, ma potenzialmente con un numero infinito di equazioni. Osserviamo dunque la necessità di individuare \textsl{Metodi ridotti}.
+\subsection{Metodo delle equazioni di Kirchhoff}
+IDEA: esistono due proprietà fondamentali dei circuiti connessi:
+\begin{description}
+	\item [Proprietà 1] La scrittura della LKT per un insieme di maglie linearmente indipendenti\footnote{Un insieme di maglie linearmente indipendenti è un insieme di maglie in un cui ciascuna maglia contiene almeno un ramo che non appartiene a nessuna altra} origina un sistema di equazioni linearmente indipendenti.\\
+	Il numero massimo di maglie indipendenti $m$, detti $r$ il numero di rami e $n$ il numero di nodi del circuito, $m = r - n + 1$.
+	
+	\item[Proprietà 2] La scrittura delle LKC per $n-1$ nodi di un circuito con $n$ nodi origina un sistema di equazioni linearmente indipendenti.
+\end{description}
+Dunque, \textbf{per descrivere la topologia di un circuito connesso}, bastano $m$ LKT e $n-1$ LKC.\\
+Pertanto, il \textsl{Metodo delle equazioni di Kirchhoff}, consiste nello scrivere $m$ LKT, $n-1$ LKC e $r$ leggi costitutive. Sono cioè sufficienti $(m) + (n - 1) + r = (r - n + 1) + (n - 1) + r = 2r$ equazioni per risolvere il circuito.\\
+In questo modo però non si tiene conto delle proprietà delle connessioni in serie (la corrente è la stessa nella serie). La considerazione di questa proprietà porta al prossimo metodo.
+
+\subsection{Metodo dei potenziali di nodo}
+Oltre alle due proprietà viste sopra, si tiene conto della proprietà delle serie. Riformuliamo dunque la definizione di nodo, e di conseguenza quella di ramo.\\
+\begin{dfn}[Nodo (definzione operativa)]
+	Punto del circuito a cui afferiscono 3 o più rami (non soltanto 2 come nella definizione rigorosa)
+\end{dfn}
+\begin{dfn}[Ramo (definizione operativa)]
+	Un ramo non coincide più necessariamente con un bipolo, ma può essere anche una serie di bipoli.
+\end{dfn}
+Introduciamo inoltre il concetto di \textsl{potenziale elettrico nodale}. Ricordando la \cref{dfn:tensione}, e chiamando $e$ la funzione potenziale elettrico, possiamo porre a 0 il potenziale di un nodo, considerandolo collegato a terra.\\
+Dunque il \textsl{Metodo dei potenziali di nodo} consiste in:
+\begin{itemize}
+	\item[1] Selezionare un nodo di riferimento, e porne convenzionalmente il potenziale a 0;
+	\item [2] Applicare la LKC ai rimanenti $n-1$ nodi;
+	\item [3] Esprimere le $n-1$ correnti che compaiono nelle LKC, in funzione dei potenziali di nodo ($i_k(t) = f(e_k, e_h)$).\footnote{Questo passaggio richiede l'ipotesi implicita di lavorare con componenti controllabili in tensione.}
+	\item [4] Risolvere il sistema lineare formato da $n-1$ equazioni, per ottenere i potenziali di nodo, e ricavare le correnti.
+\end{itemize}
+Per la possibilità di scrivere la soluzione della rete "a prima vista", questo metodo è anche detto \textsl{per ispezione (diretta)}. 
+
+\subsubsection{Potenziali di nodo per rami controllabili in tensione - rami di tipo 1 e 2}
+\begin{ex}\label{esercizio: 4}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex_potnod}
+		\caption{Circuito relativo all'\cref{esercizio: 4}}
+		\label{fig:expotnod}
+	\end{figure}
+	Nella \cref{fig:expotnod}, siano $R_1 = 1\ \Omega$, $R_2 = 2\ \Omega$, $R_3 = 3\ \Omega$, $V_{g1} = 30 V$, $I_{g2} = -3\ A$. Risolvere il circuito tramite il metodo dei potenziali di nodo.\\
+	\begin{itemize}
+		\item [1] Poniamo $e_B = 0$.
+		\item [2] 
+			$LKC_A: i_3 - i_1 - i_2 = 0$
+		\item [3] 
+			Vediamo alcuni procedimenti generali per ricavare le $f$ per rami di tipo analogo a quelli che compaiono in questo circuito.\leavevmode
+			\begin{description}
+				\item[Rami di tipo 1 (1 e 3 in questo circuito)] Rami contenenti resistore e generatore di tensione. $LKT: v_{AB} + v_{R_1} - V_{g1} = 0$, dunque $i_1 = G_1V_{g1} + G_1 (e_B - e_A) = f_1(e_A, e_B)$ e, analogamente, $i_3 = G_3(e_A - e_B)$.\leavevmode
+				\item[Ramo di tipo 2 (ramo 2 in questo circuito)] $i_2 = I_{g2}$ per la legge costitutiva del generatore stesso. Rami di tipo 2 non introducono incognite nel sistema in realtà.\leavevmode
+			\end{description}
+		\item [4] 
+			$LKC_A: f_3(e_A, e_B) - f_1(e_A, e_B) - f_2(e_A, e_B) = 0$\\
+			$LKC_A: -G_1V_{g1} - G_1(e_B - e_A) - I_{g2} + G_3(e_A - e_B) = 0$
+			\[e_A = \frac{G_1V_{g1} + I_{g2}}{G_3 + G_1} = 20,25\ V\]
+	\end{itemize}	
+	Risulta dunque che $i_3 = 6,75\ A$, $i_2 = I_{g2} = -3\ A$, $i_1 = \frac{V_{g1} - e_A}{R_1} = 9,75\ A$.
+\end{ex}
+
+Facendo riferimento all'equazione risolvente del circuito in \cref{esercizio: 4},
+ \[-G_1V_{g1} - G_1(e_B - e_A) - I_{g2} + G_3(e_A - e_B) = 0\]
+ La possiamo riorganizzare in:
+\[(G_1 + G_3) e_A - (G_1 + G_3) e_B = G_1V_{g1} + i_{g2}\]
+\begin{multline*}
+	\left( \sum_{rami\ connessi\ ad\ A} G_{ramo} \right) e_A - \sum_{rami\ tra\ A\ e\ altri} G_{ramo}e_{altro} = \\
+	= \sum_k^{n gen} I_{g,k}
+\end{multline*}
+Nel caso di reti binodali, il calcolo si riduce al Teorema di Millman \[V = \frac{\sum_k i_{c.c., k}}{\sum_k G_k}\].
+
+\begin{ex}\label{esercizio: 5}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex_5}
+		\caption{Circuito relativo all'\cref{esercizio: 5}}
+		\label{fig:ex_5}
+	\end{figure}
+	Nella \cref{fig:expotnod}, siano $R_1 = R_2 =...=R_5 = 1\ \Omega$, $V_{g1} = 3\ V$, $V_{g2} = 13\ V$, $V_{g3} = 12\ V$, $I_{g4} = 4\ A$, $I_{g5} = 3\ A$ Risolvere il circuito tramite il metodo dei potenziali di nodo e scrivere il sistema risolvente per ispezione.\\
+	Pongo a terra in nodo $C$, $e_C = 0$.
+	\[
+	\begin{cases}
+		e_c = 0 \\
+		G_3e_A - G_3e_C = G_3V_{g3} - I_{g4} - I_{g5}\\
+		(G_1 +G_4) e_B - G_4e_C - G_1e_D = V_{g1}G_1 + I_{g4}\\
+		(G_1 + G_2) e_D - G_2 e_c -G_1 e_B = -G_1V_{g1} +G_2V_{g2} + I_{g5}\\
+	\end{cases}
+	\]
+	Risoluzione tramite il Metodo di Cramer. (La prima è detta \textsl{matrice delle conduttanze [K]})
+	\[
+	\begin{bmatrix}
+		G_3 & 0 & 0\\
+		0 & G_1 + G_3 & -G_1\\
+		0 & -G_1 & G_1 + G_2 
+	\end{bmatrix}
+	\begin{bmatrix}
+		e_A\\
+		e_B\\
+		e_D
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		-G_3V_{g3} - I_{g4} - I_{g5} \\
+		G_1 V_{g1}+ I_{g4}\\
+		-G_2V_{g1} + G_2V_{g2}
+	\end{bmatrix}
+	\]
+	
+	\[
+	\begin{bmatrix}
+		1 & 0 & 0\\
+		0 & 2& -1\\
+		0 & -1 & 2
+	\end{bmatrix}
+	\begin{bmatrix}
+		e_A\\
+		e_B\\
+		e_D
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		-19 \\
+		7\\
+		13
+	\end{bmatrix}
+	\]
+	
+	\[
+	\begin{cases}
+		e_A = \frac{det[K_1]}{det[K]}\\
+		e_B = \frac{det[K_2]}{det[K]}\\
+		e_D = \frac{det[K_3]}{det[K]}
+	\end{cases}
+	\]
+	Utilizzando il Metodo di Laplace per il calcolo dei determinanti,
+	\[det(K) = 1 \begin{vmatrix}
+						2 & -1 \\
+						-1 & 2
+					\end{vmatrix} = 3\det(K_1) = -57\]
+	$det(K_1) = -57$, $det(K_2) = 27$, $det(K_3) = 33$.\\
+	Dunque,
+	\[
+	\begin{cases}
+		e_A = \frac{-57}{3} = -19\ V\\
+		e_B = \frac{27}{3} = 9\ V\\
+		e_D = \frac{33}{3} = 11\ V
+	\end{cases}
+	\]
+	Prendendo i VDR delle correnti seguendo le direzioni dei generatori, procediamo al calcolo.\\
+	\[i_1 = \frac{V_{g1} - e_B - e_D}{R_1} = 5\ A\]
+	In maniera analoga, utilizzando LKT e LKC, $i_2 =2\ A $, $i_3 =-7\ A $, $i_4 = - 9\ A$, $i_5 = I_{g5} = 3\ A$.
+\end{ex}
+\subsubsection{Potenziali di nodo per rami non controllabili in tensione - rami di tipo 3}
+\begin{ex}\label{esercizio: 6}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex_6}
+		\caption{}
+		\label{fig:ex6}
+	\end{figure}
+	\begin{itemize}
+		\item [1.] Scelta nodo di riferimento
+		\item [2.] Scrittura del sistema come se le correnti dei rami di tipo 3 fossero note
+		\item [3.] Aggiunta di un'equazione per ogni ramo di tipo 3 (vincolo tra i potenziali nodali dato dal generatore).
+	\end{itemize}
+	\[
+	\begin{cases}
+		e_C= 0\\
+		(G_1 + G_2) e_A = G_1 V_{g1} - I_{g2}\\
+		G_3e_B = I_{g3} + I_{g2}\\
+		e_B - e_A = V_{g2}
+	\end{cases}\]
+	\[
+	\begin{bmatrix}
+		G_1 + G_2 & 0 & 1\\
+		0 & G_3 & -1\\
+		-1 & 1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		e_A\\
+		e_B\\
+		I_{g2}
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		-G_1V_{g1}\\
+		I_{g3}\\
+		V_{g2}
+	\end{bmatrix}
+	\]
+	Possibile risolverlo con Cramer o per sottrazione membro a membro dell'equazione per A con quella per B.\\
+	\\
+	In questo caso, con un solo ramo di tipo 3, sarebbe possibile risolvere il circuito anche mettendo a terra il nodo $A$, in modo da ottenere calcoli più convenienti.
+		\[
+	\begin{cases}
+		e_A= 0\\
+		(G_1 + G_2 + G_3)e_C - G_3 e_B= G_1 V_{g1} - I_{g2}\\
+		G_3e_B = I_{g3} + I_{g2}\\
+		e_B = V_{g2}
+	\end{cases}\]
+	\[e_C = \frac{G_3 V_{g2} - G_1V_{g1} -I_{g3}}{G_1 + G_2 + G_3}\]
+	\[i_{g2} = i_{R3} - I_{g3}\]
+\end{ex}
+
+\subsubsection{Potenziali di nodo in presenza di generatori pilotati}
+\begin{ex}[Generatore di tensione pilotato in tensione]\label{esercizio: 7}
+	Si faccia riferimento alla \cref{fig:ex7}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex7}
+		\caption{}
+		\label{fig:ex7}
+	\end{figure}
+	Esprimo la variabile di controllo come $f(e_k, e_4)$: $v_{g2} = \alpha v_{R4}$.	
+	\[\begin{cases}
+		e_D= 0\\
+		e_C = -v{g2} = \alpha v_{R4} = -\alpha e_B\\
+		e_A = v_{g1}\\
+		(G_1 + G_4 + G_2) e_B - G_2 e_C - G_1 e_A = 0
+	\end{cases}\]
+	\[e_B = \frac{G_1 V_{g1}}{G_1 + G_4 + G_2 (1+\alpha)}\]	
+\end{ex}
+
+\begin{ex}[Generatore di tensione pilotato in corrente]\label{esercizio: 8}
+	Si faccia riferimento alla \cref{fig:ex8}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex8}
+		\caption{}
+		\label{fig:ex8}
+	\end{figure}
+	Esprimo la variabile di controllo come $f(e_k, e_4)$: $i_{R4} = G_4 v_{R4} = G_4 (e_B - e_D)$.	
+	\[\begin{cases}
+		e_D= 0\\
+		e_C = -v{g2} = -rG_4e_B\\
+		e_A = v_{g1}\\
+		(G_1 + G_4 + G_2) e_B - G_2 e_C - G_1 e_A = 0
+	\end{cases}\]
+	\[e_B = \frac{G_1 V_{g1}}{G_1 + G_4 + G_2 (1+rG_4)}\]
+\end{ex}
+
+\begin{ex}[Generatore di corrente pilotato in corrente]\label{esercizio: 9}
+	Si faccia riferimento alla \cref{fig:ex9}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex9}
+		\caption{}
+		\label{fig:ex9}
+	\end{figure}
+	Il ramo del generatore è ora di tipo 2, quindi può essere regolarmente inserito nel sistema risolvente.
+	\[\begin{cases}
+		e_D= 0\\
+		e_A = v_{g1}\\
+		(G_3 + G_2)e_C - G_2e_B - G_3e_A= -i{g2} = \beta i_{R4} = \beta G_4e_B\\
+		(G_1 + G_4 + G_2) e_B - G_2 e_C - G_1 e_A = 0
+	\end{cases}\]
+	Ed è dunque possibile risolvere il sistema, essenzialmente ridotto a un sistema di due equazioni (linearmente indipendenti) in due incognite.
+\end{ex}
+
+\begin{ex}[Generatore di corrente pilotato in tensione]\label{esercizio: 10}
+	Si faccia riferimento alla \cref{fig:ex10}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex10}
+		\caption{}
+		\label{fig:ex10}
+	\end{figure}
+	Il ramo del generatore è ora di tipo 2, quindi può essere regolarmente inserito nel sistema risolvente.
+	\[\begin{cases}
+		e_D= 0\\
+		e_A = v_{g1}\\
+		(G_3 + G_2)e_C - G_2e_B - G_3e_A= -i{g2} = g v_{R4} = -ge_B\\
+		(G_1 + G_4 + G_2) e_B - G_2 e_C - G_1 e_A = 0
+	\end{cases}\]
+	Ed è dunque possibile risolvere il sistema, essenzialmente ridotto a un sistema di due equazioni (linearmente indipendenti) in due incognite.
+\end{ex}

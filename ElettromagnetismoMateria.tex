@@ -1,0 +1,82 @@
+\section{Elettromagnetismo nella materia}
+\subsection{Polarizzazione elettrica}
+La capacità di un campo elettrico di influenzare la materia viene detto \textsl{polarizzazione elettrica}.\\
+Ci limitiamo, in questa sezione, alla trattazione del comportamento di materiali dielettrici, ossia materiali la cui conducibilità elettrica $\sigma\sim 10^{-6}\div10^{-7} S/m$ (Siemens/metro).
+\begin{legge}[Legge di Ohm locale]
+\begin{equation}\tag{Legge di Ohm locale}\begin{split}
+\vec J = \sigma \vec E \\
+\vec E = \rho \vec J
+\end{split}
+\end{equation}
+$\sigma$ conducibilità elettrica.\\
+$\rho = \frac{1}{\sigma}$ resistività elettrica.
+\end{legge}
+
+Sostanze dielettriche:
+\begin{itemize}
+\item Materiali apolari: \textsl{polarizzazione per deformazione}  A riposo, hanno un centro positivo e un esterno negativo, con baricentri positivo e negativo sovrapposti. Quando sottoposti a un campo elettrico, si deformano, e i due baricentri vengono spinti in due direzioni opposte, separandosi: si ottiene un sistema con una carica $+q$ e $-q$ a una distanza $d$, ossia un dipolo elettrico elementare, con momento di dipolo $\vec p = q\vec d$. Questa separazione porta alla generazione di un ulteriore campo, che interagisce con quello applicato, modificando il campo risultante percepito.
+\item Materiali Polari: \textsl{polarizzazione per orientamento}. Esempio: acqua (distillata). Anche in assenza di $\vec E$ esterno, i baricentri delle cariche positive e negative non corrispondono, ed è dunque già un dipolo elettrico elementare, con $vec p = q \cdot \vec d$. All'applicazione di un campo esterno $vec E$, la carica positiva percepisce una forza concorde con il campo elettrico e quella negativa una discorde: si genera un momento torcente che porta all'allineamento del momento di dipolo al campo esterno e il campo generato dalla molecola si addiziona a quello esterno. Il forno a microonde ad esempio funziona sfruttando questo meccanismo: il campo elettrico variabile fa muovere le molecole d'acqua, e gli alimenti si scaldano per la dissipazione di energia tramite calore a livello molecolare.
+\end{itemize}
+
+Difficile descrivere il fenomeno a livello microscopico in una forma utile ed esaustiva, perciò lo facciamo a livello macroscopico, tramite una funzione continua nello spazio, che vale per entrambe le tipologie. Determiniamo un punto $\vec X$ e un volume infinitesimo che lo circonda $V$. $V$ contiene diversi dipoli: ne consideriamo una distribuzione casuale. Definiamo: $\Delta \vec p = \sum_{i \in V} \vec p_i$. Vettore polarizzazione elettrica $\vec P(\vec x) = \lim_{\Delta V \to 0} \frac{\Delta \vec p}{\Delta V}$, con le dimensioni $\frac{C}{m^2}$: è un momento di dipolo elettrico per unità di volume.\\
+Si può dimostrare che $\nabla \cdot \vec P = - \rho_p$ con $\rho_p$ detta \textsl{densità di carica di polarizzazione}. Si può dunque descrivere il fenomeno come se fosse presente una densità di carica (di polarizzazione) dentro il materiale, la quale genera un campo.\\
+Nel vuoto: 
+\[\nabla \cdot \vec E = \frac{\rho}{\varepsilon_0}\]
+Nella materia:
+\[\nabla \cdot \vec E =\frac{\rho + \rho_p}{\varepsilon_0}\]
+$\rho_p$ è difficile da rilevare: è necessario trovare un modo per esprimere questa relazione.\\
+\[\nabla \cdot (\varepsilon_0 \vec E)=\rho - \nabla \cdot \vec P\]
+\[\nabla \cdot (\varepsilon_0 \vec E + \vec P) = \rho\]
+Definiamo il vettore \textsl{Campo di spostamento elettrico}.
+\begin{dfn}[Campo di spostamento elettrico]
+	\[\vec D = \varepsilon_0\vec E + \vec P\]
+	Siccome $\vec P$ è funzione di $\vec E$, anche $\vec D$ lo è:
+	\[\vec P = \vec P (\vec E) \Rightarrow \vec D = \vec D(\vec E)\]
+\end{dfn}.\\
+ Detto $\bar{\bar{\alpha}}$ \textsl{tensore di polarizzazione} (determinato sperimentalmente nell'ambito della fisica della materia),
+\[\vec P = \bar{\bar{\alpha}} \vec E\]
+Per un materiale non lineare, le entrate di $\bar{\bar{\alpha}}$ dipendono dal modulo delle componenti di $\vec E$. Per un materiale isotropo e lineare, invece, $\bar{\bar{\alpha}}$ si riduce a un multiplo, detto \textsl{suscettività elettrica} ($\chi_e$) della matrice identità. Dunque, per un materiale isotropo e lineare: 
+\[\vec P = \varepsilon_0 \chi_e \vec E \]
+\[\vec D = \varepsilon_0 \varepsilon_r \vec E \]
+con $\varepsilon_r = 1 + \chi_e$, e ha valore $1$ nel vuoto $\sim 1$ nell'aria, $2 \div 5$ nei solidi isolanti e $\sim 80$ nei liquidi isolanti.\\
+Ne risulta dunque che tutte le proprietà qualitative di $\vec E$ già studiate valgono anche per $\vec D$.
+
+\subsection{Magnetizzazione}
+Essendo il magnetismo un fenomeno quantistico a livello microscopico, le teorie che consideriamo vengono ancora utilizzate soltanto perché funzionanti a livello macroscopico, non perché sostanzialmente corrette. 
+
+Si considera un'ipotetica traiettoria chiusa circolare di un elettrone in rotazione attorno a un nucleo come una spira percorsa da corrente, che racchiude una superficie. Tale spira costituisce un dipolo magnetico elementare, con momento di dipolo magnetico $\vec \mu = i \Delta \vec S \hat n = i \Delta \vec S$, misurato in $A\ m^2$.
+Ci chiediamo dunque come reagisca un atomo o molecola così costituito se sottoposto a un campo di induzione magnetica.\\
+$\vec B \neq 0$ orienta la spira portando la normale ad esservi parallela. Attuiamo una descrizione macroscopica analoga a quella impiegata per la polarizzazione elettrica per allineamento. $\Delta \vec m = \sum_{i \in V} m_i$ attorno a un punto $\vec X$. $\vec M (\vec X) = \lim_{\Delta V \to 0} \frac{\Delta m}{\Delta V}$: momento di dipolo magnetico per unità di volume, misurata in $A/m$.
+Si può dimostrare che:
+\[\nabla \times \vec M = \vec J_m\] con $\vec J_m$ \textsl{densità di corrente di magnetizzazione}.
+\[ \frac{\partial \vec P}{\partial t} = \vec J_p \] con $\vec J_p$ \textsl{densità di corrente di polarizzazione}.\\
+Nel vuoto: $\nabla \times (\frac{1}{\mu_0} \vec B) = \vec J + \frac{\partial \varepsilon_0 \vec E}{\partial t}$.\\
+Nella materia: $\nabla \times (\frac{1)}{\mu_0} \vec B) = \vec J + \vec J_m \frac{\partial \varepsilon_0 \vec E}{\partial t} + \frac{\partial \vec J_p}{\partial t}$.
+\[\nabla \times (\frac{1}{\mu_0} \vec B) = \vec J + \vec J_m \frac{\partial}{\partial t} \varepsilon_0 \vec E +\vec J_p\]
+\[\nabla \times (\frac{1}{\mu_0} \vec B - \vec M) = \vec J + \frac{\partial \vec D}{\partial t}\]
+Definiamo dunque il \textsl{campo magnetico} 
+\begin{dfn}[Campo magnetico]
+	\[\vec H = \frac{1}{\mu_0} \vec B - \vec M\ (A \cdot m^{-1})\]
+	Per evitare ambiguità, si definisce $\vec B = \mu_0 (\vec H + \vec M)$ \textsl{campo di induzione magnetica}).
+	Siccome $\vec M$ è funzione di $\vec H$, anche $\vec B$ lo è.
+	\[\vec M = \vec M (\vec H) \Rightarrow \vec B = \vec B(\vec H)\]
+\end{dfn}
+Analogamente a quanto fatto per la descrizione del fenomeno della polarizzazione elettrica, si definisce un \textsl{tensore di magnetizzabilità}, che nel caso di materiali isotropi e lineari si porta alla relazione $\vec M = \chi_m \vec H$, con $\chi_m$ detto \textsl{suscettività magnetica}.
+\[\nabla \times \vec H = \vec J + \frac{\partial \vec D}{\partial t}\]
+In questo modo si è espresso $\vec H$ soltanto in funzione delle correnti libere e di polarizzazione elettrica, ma non di polarizzazione magnetica. Da qui, è poi possibile determinare $\vec B$. Per un materiale isotropo e lineare, $\vec B = \mu_0 \mu_r \vec H$, con $\mu_r = 1 + \chi_m$ \textsl{permeabilità magnetica relativa}. $\mu_r$ ha valori: $1$ nel vuoto, $\sim 1$ nell'aria, $<1$ nei materiali diamagnetici, $>1$ nei materiali paramagnetici e $\gg 1$ per materiali ferromagnetici.
+\section{Ricapitolazione: Leggi dell'elettromagnetismo nella materia}
+\begin{description}
+%\begin{itemize}
+	\item [1. Legge di Gauss per il campo di spostamento elettrico] \[\nabla \cdot \vec D = \rho \qquad \rightarrow \qquad \oint_S \vec D \cdot d\vec S = Q\]
+	\item [2. Legge di Gauss per il campo magnetico]  \[\nabla \cdot \vec B = 0 \qquad \rightarrow \qquad \oint_S \vec B \cdot d\vec S = 0\]
+	\item [3. Legge di Faraday] \[\nabla \times \vec E = -\frac{\partial \vec B}{\partial t} \qquad \rightarrow \qquad \oint_\Gamma \vec E \cdot d \vec l = -\frac{d}{dt}\Phi_{\vec B,\Gamma}\]
+	\item [4. Legge di Ampère] \[\nabla \times \vec H = \vec J +\frac{\partial \vec D}{\partial t} \qquad \rightarrow \qquad \oint_\Gamma \vec H \cdot d \vec l = \Phi_{\vec J,S} + \Phi_{\frac{\partial \vec D}{\partial t},S} = i + i_s\]
+	\item [5. Equazione di continuità] \[\frac{\partial \rho}{\partial t} + \nabla \cdot \vec J = 0 \qquad \rightarrow \qquad i = - \frac{dQ}{dt}\]
+	\item [6. Relazioni di legame materiale] Per materiali isotropi e lineari:
+	\begin{itemize}
+		\item $\vec D = \varepsilon_0 \varepsilon_r \vec E$
+		\item $\vec B = \mu_0 \mu_r \vec H$
+		\item $ \vec J = \sigma (\vec E + \vec E_i)$ dove $\vec E_i$ sono i campi elettrici \textsl{impressi}, cioè di origine non elettrica.
+	\end{itemize}
+\end{description}
+%\end{itemize}

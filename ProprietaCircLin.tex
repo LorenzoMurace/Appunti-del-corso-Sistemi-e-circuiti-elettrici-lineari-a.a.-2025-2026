@@ -1,0 +1,245 @@
+\section{Proprietà dei circuiti lineari e teoremi delle reti}
+In questa sezione, passeremo in rassegna alcuni teoremi relativi a circuiti elettrici -che possono essere parimenti interpretati come generici sistemi in cui tensioni e correnti sono segnali- che contengono soltanto componenti lineari o componenti non lineari nelle regioni lineari del loro funzionamento (diodi, filtri operazionali,...). Osserveremo queste proprietà su circuiti in regime stazionario soltanto per semplicità di trattazione e notazione. Si noti, comunque, che i risultati ottenuti sono facilmente generalizzabili anche a circuiti in regime dinamico.
+
+\subsection{Sovrapposizione degli effetti}
+\begin{proprietà}[Sovrapposizione degli effetti]
+	In un circuito lineare, qualunque $v(t)$, $i(t)$ è dato dalla somma algebrica degli effetti dei generatori indipendenti quando essi agiscono uno alla volta.
+	\[v(t) = f(g_1, g_2, ...,g_n) = \sum_{k=1}^n f_k(g_k)\]
+	\[i(t) = h(g_1, g_2, ...,g_n) = \sum_{k=1}^n h_k(g_k)\]
+	N.B.: Questa proprietà è valida soltanto per grandezze lineari. Non è valida, ad esempio per il calcolo delle potenze, in quanto il valore della potenza dipende dal quadrato della corrente.
+\end{proprietà}
+
+\begin{ex}
+	Risolviamo il circuito in \cref{fig:es_sovr} utilizzando la sovrapposizione degli effetti.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{es_sovr}
+		\caption{}
+		\label{fig:es_sovr}
+	\end{figure}
+	Per la risoluzione, adottiamo i seguenti passaggi:
+	\begin{itemize}
+		\item [1.] Assegno VDR a tutte le correnti e tensioni;
+		\item [2.] spengo tutti i generatori indipendenti tranne il k-esimo;
+		\item [3.] calcolo correnti e tensioni parziali dovute all'effetto del $g_k$;
+		\item [4.] sommo correnti e tensioni parziali.
+	\end{itemize}
+	Soluzione:
+	\begin{itemize}
+		\item [1.] Nello svolgimento, consideriamo il VDR delle correnti sempre "verso l'alto" nel ramo.
+		\item [2. e 3.] Spegnere $V_{g1}$ è equivalente a sostituirlo con un cortocircuito.
+		\[\begin{cases}
+			e_B=0\\
+			(\frac{1}{R_1} + \frac{1}{R_3})e_A = I_{g2} + \frac{2e_A}{R_3})
+		\end{cases}\]
+		\[e_A = \frac{I_{g2}}{\frac{1}{R_1} - \frac{1}{R_3}}\]
+		\[\begin{cases}
+			i_1' = -\frac{e_A}{R_1}\\
+			i_2' = I_{g2}\\
+			i_3' = \frac{e_A}{R_1} - I_{g2}
+		\end{cases}\]
+		
+		Spegnere $I_{g2}$ è equivalente a sostituirlo con un ramo aperto (o un interruttore aperto). Il circuito si riduce quindi sostanzialmente a una sola maglia.
+		\[LKT:\ V_{g1} + v_1 + v_2 - 2v_1 = 0 \]
+		\[V_{g1} + (R_1 - R_3)i_1''= 0 \]
+		Risulta dunque:
+		\[\begin{cases}
+			i_1'' = i_3'' = \frac{V_{g1}}{R_3 - R_1}\\
+			i_2'' = 0
+		\end{cases}\]
+		\item [4.] 
+		\[\begin{cases}
+			i_1 = i_1' + i_1''\\
+			i_2 = i_2' + i_2''\\
+			i_3 = i_3' + i_3''\\
+		\end{cases}\]
+	\end{itemize}
+\end{ex}
+\subsection{Teorema di Thevenin}
+Vediamo ora due teoremi che sono conseguenza della sovrapposizione degli effetti.
+\begin{thr}[Teorema di Thevenin]
+	Enunciato: è possibile rappresentare una rete lineare e adinamica tramite un bipolo equivalente formato da un generatore di tensione in seria a un resistore senza alterare la caratteristica $v-i$ della rete.\\
+	\\
+	Consideriamo un circuito $L$ lineare adinamico, controllabile in corrente ($v_{AB} = v_{AB}(i)$), di complessità arbitraria. Supponiamo che $L$ sia collegato a una rete di complessità arbitraria, indifferentemente lineare o meno. Il teorema dunque consente di ridurre $L$ a un generatore $V_T$ in serie a un resistore $R_T$, come in \cref{fig:theveninth}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\linewidth]{thevenin_th}
+		\caption{}
+		\label{fig:theveninth}
+	\end{figure}	
+\end{thr}
+Ci chiediamo dunque quanto devono valere $V_T$ e $R_T$ perché sia rispettata l'equivalenza.\\
+Per valutare $V_T$ consideriamo $A-B$ di \cref{fig:theveninth} aperto (ossia con i due nodi staccati dal circuito arbitrario, che agisce da generatore di tensione indipendente)(in alto in \cref{fig:theveninval}). Otteniamo la tensione a vuoto $v_{AB,0}$. Siccome la corrente circolante nel circuito è nulla, non si ha caduta di tensione sul resistore. Perciò 
+\[V_T = v_{AB,0}\]
+Per valutare $R_T$, spengo i generatori indipendenti in $L$. Ipotizziamo di collegare un generatore di corrente $I_0$ tra $A$ e $B$ (in basso in \cref{fig:theveninval}).
+\[LKT:\ R_T = \frac{v_{AB}}{I_0}\]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{thevenin_val}
+	\caption{}
+	\label{fig:theveninval}
+\end{figure}
+Nel caso in cui $L$ non contenga generatori pilotati, si ha un caso particolare: il calcolo della $R_T$ si riduce al calcolo della $R_{eq}$ vista da $A-B$.
+
+\begin{ex}
+	Si consideri il circuito in \cref{fig:theveninex}.\\
+	Determinare il bipolo di Thevenin equivalente ai capi di $R_U$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{thevenin_ex}
+		\caption{}
+		\label{fig:theveninex}
+	\end{figure}
+	Per il calcolo di $V_T = v_{AB,0}$ è possibile utilizzare il metodo dei potenziali di nodo, semplificando il circuito come in \cref{fig:theveninex1}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{thevenin_ex1.png}
+		\caption{}
+		\label{fig:theveninex1}
+	\end{figure}
+	\[\begin{cases}
+		e_C= 0\\
+		e_A = V_{g1}\\
+		(1/R + 1/R)e_B - 1/R e_A = -I_{g1}
+	\end{cases}
+	\]
+	Da cui
+	\[e_B = \frac{V_{g1} - I_{g2}R}{2}\]
+	\[V_T = e_A - e_B = \frac{V_g1 + I_{g2}R}{2}\]
+	
+	Per il calcolo della $R_T$, non essendo presenti generatori pilotati, è sufficiente calcolare la resistenza equivalente del circuito ottenuto spegnendo i generatori indipendenti. Risulta facilmente che \[R_T = R_{eq}\frac{R}{2}\]
+	Alternativamente, tramite il metodo generale, è possibile considerare un generatore di corrente $I_0$ collegato ad $A-B$.
+	\[R_T = \frac{v_{AB}}{I_0} = \frac{R_{eq} I_0}{I_0} = R_{eq}\]
+	
+	Se volessimo calcolare $i_{R_U}$:
+	\[i_{R_U} = \frac{\frac{V_g1 + I_{g2}R}{2}}{\frac{R}{2} + R_U}\]
+\end{ex}
+\begin{es}[Calcolo della $R_T$ con generatori pilotati]
+	Considerando il circuito in \cref{fig:rtpil}, applichiamo il teorema di Thevenin.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{rtpil.png}
+		\caption{}
+		\label{fig:rtpil}
+	\end{figure}
+	
+	Siccome a generatori spenti i generatori pilotati non sono attivi, è necessario collegare un generatore indipendente di corrente $I_0$ in parallelo al dipolo Thevenin. $v_{AB}$ sarà dunque "scalata" in base all'entità di $I_0$, e risulterà 
+	\[R_T = \frac{v_{AB}}{I_0}\]
+\end{es}
+
+\subsection{Teorema di Norton}
+Vediamo ora il teorema "duale" del Teorema di Thevenin.
+\begin{thr}[Teorema di Norton]
+	Enunciato: è possibile rappresentare un circuito lineare e adinamico $L$ controllabile in tensione tramite un bipolo equivalente costituito da un generatore indipendente di corrente $I_N$ in parallelo a un resistore $R_N $ senza alterare la caratteristica $i-v$ del circuito $L$.\\
+	Analogamente a quanto fatto per il teorema di Thevenin, è possibile rappresentare tale semplificazione come in \cref{fig:nortonth}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\linewidth]{nortonth}
+		\caption{}
+		\label{fig:nortonth}
+	\end{figure}
+\end{thr}
+Ci chiediamo quanto devono valere dunque $I_N$ e $R_N$ per rispettare l'equivalenza.
+\[LKC:\ i = I_N - i_{R_N} = I_N - \frac{v_{AB}}{R_N}\]
+Per ottenere il valore di $I_N$, possiamo cortocircuitare i nodi $A$ e $B$, in modo tale da ottenere $v_{AB}=0$ e chiamiamo la corrente circolante nel sistema cortocircuitato $i_{CC}$. Dunque, 
+\[I_N = i_{CC}\]
+Per ottenere il valore di $R_N$, possiamo spegnere tutti i generatori indipendenti in $L$. Così non avremmo corrente circolante. Imponiamo dunque $v_{AB} = V_0$.
+\[i= -i_{RN} = -\frac{V_0}{R_N}\]
+Questo è esattamente il funzionamento di un tester: il dispositivo contiene una piccola batteria che impone una tensione nota tra i puntali e misura la corrente che vi scorre.\\
+Nel caso particolare in cui $L$ non contenga generatori pilotati,
+\[R_N = R_{eq,AB}\]
+
+\begin{ex}
+	Si consideri lo stesso circuito dell'esercizio precedente (in alto in \cref{fig:theveninex}).\\
+	Determinare il bipolo di Norton equivalente ai capi di $R_U$.
+	
+	Al fine di determinare $I_N$, cortocircuitiamo $A$ e $B$ e disegniamo il circuito equvalente "collassando" i nodi in singoli punti (\cref{fig:nortonex}). Notiamo che nel resistore collegato ad $A$ e $B$ non scorre corrente perché la tensione ai suoi capi è nulla. La corrente $I_N = i_{CC}$ che scorre nel cortocircuito tra $A$ e $B$ è dunque $i_{CC} = i_{g1}$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{nortonex.png}
+		\caption{}
+		\label{fig:nortonex}
+	\end{figure}
+	
+	\[i_R = \frac{v_R}{R} = \frac{V_{g1}}{R}\]
+	\[I_N = i_{CC} = i_{g1} = i_R + I_{g2} =  \frac{V_{g1}}{R} + I_{g2}\]
+	
+	Per il calcolo della $R_N$, non essendo presenti generatori pilotati, è sufficiente calcolare la resistenza equivalente del circuito ottenuto spegnendo i generatori indipendenti. Risulta facilmente che 
+	\[R_N = R_{eq}\frac{R}{2}\]
+	
+	Se volessimo calcolare $i_{R_U}$, risulterebbe, con la formula del partitore di corrente:
+	\[i_{R_U} = \frac{R_N}{R_N + R_U} = \frac{\frac{V_g1 + I_{g2}R}{2}}{\frac{R}{2} + R_U}\]
+	Come è naturale aspettarsi, il risultato è lo stesso individuato tramite il Teorema di Thevenin nell'esercizio precedente.
+\end{ex}
+
+\subsection{Trasformazione bipolo Thevenin - bipolo Norton}
+Per attuare una trasformazione da un bipolo Thevenin a un bipolo Norton, determiniamo le seguenti condizioni di equivalenza:
+\begin{itemize}
+	\item [1.] A generatori spenti, il valore di resistenza deve essere lo stesso, dunque \[R_T = R_N\]
+	\item [2.] A bipoli cortocircuitati, $i_{CC, T} = i_{CC,N}$, da cui \[\frac{V_T}{R_T} = I_N\]
+\end{itemize}
+\begin{es}
+	Considerando il circuito in \cref{fig:trasfthnor}, notiamo che non è possibile effettuare semplificazioni serie-parallelo. Sostituendo però il generatore di tensione e il resistore in serie con un generatore di corrente con resistore in parallelo (evidenziati nella figura) è possibile risolvere più facilmente il circuito.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{trasfthnor.png}
+		\caption{}
+		\label{fig:trasfthnor}
+	\end{figure}
+	\[\begin{cases}
+		&R_N = R_1\\
+		&I_N = \frac{V_{g1}}{R_1}
+	\end{cases}\]
+\end{es}
+\subsection{Teoremi di Thevenin e Norton in regime sinusoidale}
+È possibile applicare i teoremi di Thevenin e Norton anche in regime sinusoidale nonostante le funzioni sinusoidali non siano lineari in quanto il passaggio al dominio simbolico è attuato tramite un operatore lineare, la Trasformata di Steinmetz. 
+Nel dominio simbolico, dunque, valgono: il principio di sovrapposizione degli effetti, i teoremi di Thevenin e Norton e la trasformazione dei bipoli. Tuttavia, si considereranno i fasori al posto delle grandezze circuitali dirette e le impedenze al posto delle resistenze.
+\begin{ex}
+	Calcolare la $i_2(t)$ nel circuito in \cref{fig:thsin} usando il teorema di Thevenin.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{thsin.png}
+		\caption{$R = R_2 = 10\ \Omega$, $V_{g1}(t) = 10\sqrt{2} cos(50t + \pi/4)\ V$, $I_{g2}(t) = 3\sqrt{2} cos(50t)\ A $, $C = 5\ mF$, $L = 40\ mH$, $L_2 = 120\ mH$.}
+		\label{fig:thsin}
+	\end{figure}
+	Innanzitutto, attuiamo il passaggio al dominio simbolico.
+	\[\begin{cases}
+		&\underline V_{g1} = 10 e^{j\frac{\pi}{4}} = \frac{10}{\sqrt{2}} + j \frac{10}{\sqrt{2}}\\
+		&\underline I_{g2} = 3\\
+		&\underline Z_L = j \omega L = j2\\
+		&\underline Z_{L_2} = j \omega L_2 = j6\\
+		&\underline Z_C = -\frac{j}{\omega C} = -j4\\
+		&Z_R = Z_{R_2} = 10\ \Omega\\
+		&\underline Z_{eq2} = Z_{R_2} + \underline Z_{L_2} = 10 + j6
+	\end{cases}\]
+	Procediamo dunque al calcolo dei valori dei componenti del bipolo Thevenin.\\
+	Procediamo innanzitutto al calcolo della $\underline{V_T}$ (\cref{fig:thsin1}).
+	\[\underline V_T = \underline V_{AB, 0} = \underline e_A - \underline e_B\]
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\linewidth]{thsin1}
+		\caption{}
+		\label{fig:thsin1}
+	\end{figure}
+	
+	\[\begin{cases}
+		&\underline e_B = 0\\
+		&\underline e_C = \underline V_{g1}\\
+		& (\underline{Y_R} \underline{Y_C})\underline{e_A} -Y_R \underline{e_C} = \underline{I_{g2}}
+	\end{cases}
+	\]
+	\[\underline{V_T} = \underline{e_A} = j0,25\]
+	Siccome non sono presenti generatori pilotati semplicemente spegniamo i generatori indipendenti e calcoliamo l'impedenza equivalente (\cref{fig:thsin2}):
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{thsin2}
+		\caption{Circuito semplificato nella condizione di generatori spenti. Si noti che non scorre corrente su $\underline{Z_L}$, che è in parallelo a un cortocircuito}
+		\label{fig:thsin2}
+	\end{figure}
+	\[\underline{Z_T} = \underline{Z_{eq,AB}} = \frac{\underline{Z_C}Z_R}{\underline{Z_C} + Z_R} = 1,38 - j3,45\]
+	Naturalmente, è possibile ottenere lo stesso risultato tramite il metodo generale, funzionante anche in presenza di generatori pilotati, a costo di calcoli ridondanti.
+	Collegando il dipolo equivalente Thevenin a un dipolo con $\underline{Z_{eq,2}}$, possiamo determinare 
+	\[\underline i_2= \frac{\underline{V_t}}{\underline{Z_T} + \underline{Z_{eq,2}}} = 0,41 - j1,13\]
+	\[i_2(t) = S^{-1}[\underline{i_2}] =1,2 \sqrt{2}cos(50 t -1,22) \]
+	Analogamente, si potrebbe svolgere lo stesso esercizio individuando un bipolo di Norton equivalente.
+\end{ex}

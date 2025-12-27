@@ -1,0 +1,673 @@
+\section{Doppi bipoli (componenti biporta)}
+Sinora abbiamo considerato bipoli, ossia componenti con due porte, con una tensione applicata ai due capi e una corrente che vi scorre attraverso. Per questi, abbiamo visto che esiste sicuramente una legge costitutiva in forma implicita $f(v,i) = 0$, che può spesso essere esplicitata. Notiamo che per descrivere componenti di questo tipo possono essere descritti da una sola tensione e una sola corrente, in relazione tramite una sola equazione.\\
+Ci occupiamo ora invece di \textsl{quadrupoli} (\cref{fig:quadrupolo}). 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{quadrupolo}
+	\caption{}
+	\label{fig:quadrupolo}
+\end{figure}
+
+Siccome si hanno quattro correnti (una per ogni porta) e una tensione per ogni combinazione di porte, la legge costitutiva sarà composta da tre equazioni, che legano tre tensioni e tre correnti, mentre la quarta tensione e la quarta corrente possono essere determinate tramite le leggi di Kirchhoff. La legge costitutiva di un quadrupolo ha quindi la forma:
+\[\begin{cases}
+	f_1(v_{21}, v_{31}, v_{41}, i_1, i_2, i_3) = 0\\
+	f_2(v_{21}, v_{31}, v_{41}, i_1, i_2, i_3) = 0\\
+	f_3(v_{21}, v_{31}, v_{41}, i_1, i_2, i_3) = 0\\
+\end{cases}\]
+N.B.: le quattro correnti sono, in generale, diverse tra loro.\\
+\begin{dfn}[Porta]
+	In un circuito a parametri concentrati, si dice \textsl{porta} un coppia di terminale di un componente in cui la corrente entrante è uguale alla corrente uscente.
+\end{dfn}
+Un bipolo è sempre considerabile come una \textsl{uno-porta}.
+\begin{dfn}[Doppio bipolo (biporta/2-porte)]
+	Un doppio bipolo è un quadrupolo i cui terminali formano due porte. È dunque possibile rappresentare un doppio dipolo come in \cref{fig:doppiaporta}, a partire da un quadrupolo generico, e definendo le due porte distinte come convenzionalmente \textsl{porta di ingresso} (1-1') e \textsl{porta di uscita} (2-2').
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{doppiaporta}
+		\caption{}
+		\label{fig:doppiaporta}
+	\end{figure}
+\end{dfn}
+La descrizione di un doppio bipolo + attuata in riferimento alle \textit{variabili di porta}, ossia le coppie $(i_1, v_1)$ e $(i_2, v_2)$. La legge costitutiva di un doppio bipolo generico avrà dunque la forma:
+\begin{legge}[Legge costitutiva di un doppio bipolo]\label{legge:DB}
+	\[\begin{cases}
+		f_1(v_1, v_2, i_1, i_2)=0\\
+		f_2(v_1, v_2, i_1, i_2)=0
+	\end{cases}\]
+\end{legge}
+Anche un tripolo può essere visto come un doppio bipolo, vedendo uno dei tre poli (nodo 3 in \cref{fig:tripolo}). Estendendo il nodo 3 in due porzioni, si verifica poi facilmente che $i_3 = -(i_1 + i_2)$, in cui $i_1$ e $i_2$ sono le correnti che scorrono sovrapposte sul terzo nodo. La teoria elaborata per i doppi bipoli può dunque essere estesa anche ai tripoli, e questo consente di parlare in generale di grandezze relative ai tripoli, indipendentemente dal funzionamento del componente stesso (transresistenza, transammettenza,...).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{tripolo.png}
+	\caption{}
+	\label{fig:tripolo}
+\end{figure}
+Ancora più in generale, un intero circuito può essere interpretato come un doppio bipolo (\cref{fig:circuitodb}). Selezionando quattro nodi di un generico circuito e collegandovi dei terminali, per la LKC risulta necessaria la condizione di porta (la corrente in uscita da un terminale è uguale a quella in entrata nell'altro.)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{circuitoDB.png}
+	\caption{}
+	\label{fig:circuitodb}
+\end{figure}
+\subsection{Rappresentazioni esplicite di un doppio bipolo}
+Tenendo a mente la forma implicita in \cref{legge:DB}, prendiamo in considerazione un doppio bipolo resistivo, lineare, tempo-invariante. In questo caso possiamo scrivere la forma implicita in una forma generale più specifica:
+\[\begin{cases}
+	a_{11} v_1 + a_{12}v_2 + b_{11} i_1 + b_{12} i_2 =0\\
+	a_{21} v_1 + a_{22}v_2 + b_{21} i_1 + b_{22} i_2 =0
+\end{cases}\]
+in cui i coefficienti $a_{ij}$ e $b_{ij}$ sono costanti. Notiamo che questa equazione ha fondamentalmente la stessa funzione di $1\ v\ +\ (-R)\ i\ =\ 0$, per un bipolo.\\
+Il sistema appena proposto può essere scritto in forma matriciale:
+\[\begin{bmatrix}
+	a_{11} & a_{12}\\
+	a_{21} & a_{22}\\
+\end{bmatrix}
+\begin{bmatrix}
+	v_1\\
+	v_2
+\end{bmatrix}
++
+\begin{bmatrix}
+	b_{11} & b_{12}\\
+	b_{21} & b_{22}\\
+\end{bmatrix}
+\begin{bmatrix}
+	i_1\\
+	i_2
+\end{bmatrix}
+=0
+\]
+la quale può essere riscritta, in forma compatta come:
+\[[a][v] + [b][i] = 0\]
+Il nostro obiettivo è però scrivere leggi costitutive (\textit{rappresentazioni}) esplicite, ossia una forma della legge costitutiva in cui due variabili di porta sono espresse in funzione delle altre. Ne esistono dunque  diverse possibilità. Ad esempio:
+\[1)\ \begin{cases}
+	v_1 = f_1(i_1, i_2)\\
+	v_2 = f_2(i_1, i_2)
+\end{cases}\]
+\[ 2)\ \begin{cases}
+	v_2 = f_1(v_2, i_1)\\
+	i_2 = f_2(v_2, i_1)
+\end{cases}\]
+La 1) è la forma controllata in tensione, la 2) è invece una forma ibrida. Ciascuna delle 6 forme può essere utile in particolari contesti.
+\subsubsection{Rappresentazione R}
+Ipotesi: entrambe le porte sono controllabili in corrente.
+\[\begin{cases}
+	v_1 = r_{11} i_1 + r_{12} i_2\\
+	v_2 = r_{21} i_1 + r_{22} i_2
+\end{cases}\]
+\[\begin{bmatrix}
+	v_1\\
+	v_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+	r_{11} & r_{12}\\
+	r_{21} & r_{22}\\
+\end{bmatrix}
+\begin{bmatrix}
+	i_1\\
+	i_2
+\end{bmatrix}\]
+\[[v] = [R][i]\]
+La matrice $[R]$ è detta \textit{matrice resistenza}. I parametri $r_{ij}$ sono detti \textit{parametri r}.\\
+Per ricavare $r_{ij}$ in un generico doppio bipolo, è possibile utilizzare il \textbf{\textit{metodo delle prove semplici}}:
+\begin{itemize}
+	\item [1. ] Mantenendo la porta 2 aperta, si ha $i_2 = 0$. Si può dunque forzare una corrente nota $i_1 = I_0$ collegando un generatore indipendente di corrente tra i terminali della porta 1.
+	\[\begin{cases}
+		r_{11} = \left. \frac{v_1}{i_{1}}\right|_{i_2=0} = \left. \frac{v_1}{i_{0}}\right|_{i_2=0}\\
+		r_{21} = \left. \frac{v_2}{i_{1}}\right|_{i_2=0} = \left. \frac{v_2}{i_{0}}\right|_{i_2=0}
+	\end{cases}\]
+	$r_{11}$ è detta \textit{resistenza di ingresso (con uscita aperta)} o \textit{autoresistenza alla porta 1}, ed è un parametro che si trova a catalogo per i componenti, e indica il termine di proporzionalità tra la tensione generata sulla porta 1 e la corrente forzata su di essa.\\
+	$r_{21}$ è detta \textit{resistenza di trasferimento (dalla porta 1 alla porta 2)} o \textit{transresistenza}, ed è anch'esso un parametro che si trova a catalogo per i componenti, e indica il termine di proporzionalità tra la tensione generata sulla porta 2 e la corrente forzata sulla porta 1.
+	\item [2. ] Mantenendo la porta 1 aperta, si ha $i_1 = 0$. Si può dunque forzare una corrente nota $i_2 = I_0$ collegando un generatore indipendente di corrente tra i terminali della porta 1. Similmente a quanto sopra, quindi:
+	\[\begin{cases}
+		r_{12} = \left.\frac{v_1}{i_{2}}\right|_{i_1=0} = \left. \frac{v_1}{i_{0}}\right|_{i_1=0}\\
+		r_{22} = \left.\frac{v_2}{i_{2}}\right|_{i_1=0} = \left. \frac{v_2}{i_{0}}\right|_{i_1=0}
+	\end{cases}\]
+	$r_{12}$ è dunque la \textit{resistenza di trasferimento (dalla porta 2 alla porta 1)} o \textit{transresistenza}.
+	$r_{22}$ è detta \textit{resistenza di uscita (con entrata aperta)} o \textit{autoresistenza (alla porta 2)}
+\end{itemize}
+È dunque possibile scrivere la matrice $[R]$ con le entrata così determinate. Se $r_{12} = r_{21}$, il doppio bipolo è \textit{reciproco}. Si dimostra che tutti i doppi bipoli che contengono solo resistori sono reciproci.
+\begin{ex}
+	Calcolare i parametri r di una configurazione di \textit{resistori a T} (\cref{fig:resat})
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{resat.png}
+		\caption{Configurazione di resistori a T. $R_1 = 20\ \Omega$, $R_2 = 30\ \Omega$, $R_3 = 40\ \Omega$}
+		\label{fig:resat}
+	\end{figure}
+	\[\begin{cases}
+		v_1 = r_{11} i_1 + r_{12} i_2\\
+		v_2 = r_{21} i_1 + r_{22} i_2
+	\end{cases}\]
+	Procediamo quindi alla prima prova semplice, mantenendo aperta la porta 2 ($i_2 = 0,\ i_1 = I_0$, \cref{fig:provas1}).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{provas1}
+		\caption{}
+		\label{fig:provas1}
+	\end{figure}
+	\[\begin{cases}
+		v_1 = (R_1 + R_3) I_0\\
+		v_2 = R_3 I_0
+	\end{cases}\]
+	\[\begin{cases}
+		r_{11} =\frac{(R_1 + R_3)I_0}{I_0} = 60\ \Omega\\
+		r_{21} = \frac{R_3 I_0}{I_0} = 40\ \Omega
+	\end{cases}\]
+	In maniera del tutto simile, procediamo alla seconda prova semplice: $i_1 = 0,\ i_2 = I_0$, \cref{fig:provas2}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{provas2.png}
+		\caption{}
+		\label{fig:provas2}
+	\end{figure}
+	\[\begin{cases}
+		v_2 = (R_2 + R_3) I_0\\
+		v_1 = R_3 I_0
+	\end{cases}\]
+	\[\begin{cases}
+		r_{12} =\frac{R_3I_0}{I_0} = 40\ \Omega\\
+		r_{22} = \frac{(R_2 + R_3) I_0}{I_0} = 70\ \Omega
+	\end{cases}\]
+	Dunque:
+	\[R = 
+	\begin{bmatrix}
+		60 & 40\\
+		40 & 70\\
+	\end{bmatrix}\]
+	Notiamo appunto che il bipolo risulta reciproco, avendo transammettenze uguali.
+\end{ex}
+
+\subsubsection{Rappresentazione G}
+Ipotesi: entrambe le porte sono controllabili in tensione. 
+\[\begin{cases}
+	i_1 = g_{11} v_1 + g_{12} v_2\\
+	i_2 = g_{21} v_1 + g_{22} v_2
+\end{cases}\]
+\[\begin{bmatrix}
+	i_1\\
+	i_2
+\end{bmatrix}
+\begin{bmatrix}
+	g_{11} & g_{12}\\
+	g_{21} & g_{22}\\
+\end{bmatrix}
+\begin{bmatrix}
+	v_1\\
+	v_2
+\end{bmatrix}\]
+\[[i] = [G][v]\]
+La matrice $[G]$ è detta \textit{matrice resistenza}. I parametri $r_{ij}$ sono detti \textit{parametri g} o \textit{parametri conduttanza}.\\
+Anche in questo caso, è possibile determinare i componenti conduttanza tramite il metodo delle prove semplici.
+
+Come nel caso precedente, l'obiettivo è annullare, in ciascuna prova semplice, il termine relativo alla variabile indipendente di una delle due porte (in questo caso, alternativamente $v_1 = 0$ e $v_2 = 0$)
+\begin{itemize}
+	\item [1. ] Mantenendo la porta 2 aperta, si ha $v_2 = 0$. Si può dunque forzare una tensione nota $v_1 = V_0$ collegando un generatore indipendente di corrente tra i terminali della porta 1.
+	\[\begin{cases}
+		g_{11} = \left.\frac{i_1}{v_{1}}\right|_{v_2=0} = \left.\frac{i_1}{V_{0}}\right|_{v_2=0}\\
+		g_{21} = \left.\frac{i_2}{v_{1}}\right|_{v_2=0} = \left.\frac{i_2}{V_{0}}\right|_{v_2=0}
+	\end{cases}\]
+	$g_{11}$ è detta \textit{conduttanza di ingresso (in cortocircuito)} o \textit{autoconduttanza alla porta 1}, ed è indica il termine di proporzionalità tra la corrente nella porta di ingresso e la tensione imposta su di essa, quando la porta di uscita è cortocircuitata.\\
+	$r_{21}$ è detta \textit{conduttanza di trasferimento (dalla porta 1 alla porta 2)} o \textit{transconduttanza} e indica il termine di proporzionalità tra la corrente che scorre nella porta 2 e la tensione forzata sulla porta 1.
+	
+	\item [2. ] Mantenendo la porta 1 aperta, si ha $v_1 = 0$. Si può dunque forzare una tensione nota $v_2 = V_0$ collegando un generatore indipendente di tensione tra i terminali della porta 2. Similmente a quanto sopra, quindi:
+	\[\begin{cases}
+		g_{12} = \left.\frac{i_1}{v_{2}}\right|_{v_1=0} = \left.\frac{i_1}{V_{0}}\right|_{v_1=0}\\
+		g_{22} = \left.\frac{i_2}{v_{2}}\right|_{v_1=0} = \left.\frac{i_2}{V_{0}}\right|_{v_1=0}
+	\end{cases}\]
+	$g_{12}$ è dunque la \textit{conduttanza di trasferimento (dalla porta 2 alla porta 1)} o \textit{transconduttanza}.
+	$g_{22}$ è detta \textit{conduttanza di uscita (con entrata cortocircuitata)} o \textit{autoconduttanza (alla porta 2)}
+\end{itemize}
+È dunque possibile scrivere la matrice $[G]$ con le entrata così determinate. Se $g_{12} = g_{21}$, il doppio bipolo è \textit{reciproco}. Come per la rappresentazione r, si dimostra che tutti i doppi bipoli che contengono solo resistori sono reciproci.
+\begin{ex}
+	Calcolare i parametri g della configurazione di resistori in \cref{fig:exconfg}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{exconfg}
+	\caption{$R_1 = 20\ \Omega$, $R_2 = 30\ \Omega$, $R_3 = 40\ \Omega$}
+	\label{fig:exconfg}
+\end{figure}
+	\[\begin{cases}
+		i_1 = g_{11} i_1 + g_{12} i_2\\
+		i_2 = g_{21} i_1 + g_{22} i_2
+	\end{cases}\]
+	Procediamo quindi alla prima prova semplice, cortocircuitando la porta 2 ($v_2 = 0,\ v_1 = V_0$, \cref{fig:gprovas1}).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{gprovas1}
+		\caption{}
+		\label{fig:gprovas1}
+	\end{figure}
+	\[\begin{cases}
+		g_{11} =\frac{i_1}{V_0} = \frac{(G_1 + G_2)V_0}{V_0}= \frac{1}{20} + \frac{1}{30}\ \S\\
+		g_{21} = \frac{i_2}{V_0} = \frac{-G_2 V_0}{V_0}= -\frac{1}{30}\ \S
+	\end{cases}\]
+	Si noti che è totalmente ammissibile che un parametro g sia negativo, come in questo caso $g_{21}$, in quanto è dovuto dal verso della corrente entrante dalle porte nell'analisi del circuito.
+	In maniera del tutto simile, procediamo alla seconda prova semplice: $v_1 = 0,\ v_2 = V_0$. Si ottiene:
+	\[\begin{cases}
+		g_{12} = - \frac{1}{30}\ S = g_{12}\\
+		g_{22} = \frac{1}{30} + \frac{1}{40}\ S
+	\end{cases}\]
+\end{ex}
+
+\subsubsection{(Non) esistenza di una rappresentazione}
+Siccome avevamo notato che non tutte le rappresentazioni sono possibili per tutti i circuiti. È possibile osservare la non applicabilità di una rappresentazione perché si manifestano incongruenze all'analisi circuitale. Procediamo a vederne un caso particolare.
+\begin{es}
+	Proviamo a calcolare i parametri g in riferimento al doppio bipolo considerato in \cref{fig:nonesistenza}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{nonesistenza}
+		\caption{}
+		\label{fig:nonesistenza}
+	\end{figure}
+	Alla prima prova semplice, dovremmo cortocircuitare la porta 2 e imporre una tensione costante alla porta 1. Ma considerando la maglia che comprende i due rami che chiudono le porte (cortocircuito e generatore di tensione), violeremmo la LKT (\cref{fig:nonesistenzaprova}). 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{nonesistenzaprova}
+		\caption{}
+		\label{fig:nonesistenzaprova}
+	\end{figure}
+	\[LKT:\ v_1 - v_2 =0\]
+	Ma 
+	\[v_0 - \neq 0\]
+	Dunque non è possibile utilizzare la rappresentazione G per questo doppio bipolo.
+\end{es}
+\subsubsection{Rappresentazioni ibride H e H'}
+Abbiamo esplorato finora rappresentazioni concettualmente corrispondenti alle descrizioni per i bipoli. Vediamo ora configurazioni in cui le variabili indipendenti sono ibride (una tensione e una corrente).
+
+Chiamiamo rappresentazione H quella in cui le variabili indipendenti sono $i_1$ e $v_2$:
+\[\begin{cases}
+	v_1 = v_1 (i_1, v_2) = h_{11} i_1 + h_{12} v_2\\
+	i_2 = i_2 (i_1, v_2) = h_{21} i_1 + h_{22} v_2
+\end{cases}\]
+In forma matriciale,
+\[\begin{bmatrix}
+	v_1\\
+	i_2
+\end{bmatrix}
+\begin{bmatrix}
+	h_{11} & h_{12}\\
+	h_{21} & h_{22}\\
+\end{bmatrix}
+\begin{bmatrix}
+	i_1\\
+	v_2
+\end{bmatrix}\]
+Chiamiamo la matrice $[H]$ così composta \textit{matrice ibrida diretta}. Questa rappresentazione è quella utilizzata preferenzialmente per caratterizzare componenti tripolari, per le ragioni che saranno chiare in seguito.
+
+Prove semplici:\\
+Come nel caso precedente, l'obiettivo è annullare, in ciascuna prova semplice, il termine relativo a una delle due variabili indipendenti per ciascuna prova (in questo caso, alternativamente $i_1 = 0$ e $v_2 = 0$)
+
+\begin{itemize}
+	\item [1. ] Cortocircuitando la porta 2, si ha $v_2 = 0$. Si può dunque imporre una corrente nota $i_1 = I_0$ collegando un generatore indipendente di corrente tra i terminali della porta 1.
+	\[\begin{cases}
+		h_{11} = \left.\frac{v_1}{i_{1}}\right|_{v_2=0} = \left.\frac{v_1}{I_{0}}\right|_{v_2=0}\\
+		h_{21} = \left.\frac{i_2}{i_{1}}\right|_{v_2=0} = \left.\frac{i_2}{I_{0}}\right|_{v_2=0}
+	\end{cases}\]
+	$h_{11}$ è una \textit{resistenza di ingresso (in cortocircuito)}\\
+	$h_{21}$ è detta \textit{guadagno di corrente (dalla porta 1 alla porta 2, in cortocircuito)}.
+	
+	\item [2. ] Mantenendo, invece, aperta la porta 1 aperta, si ha $i_1 = 0$. Si può dunque forzare una tensione nota $v_2 = V_0$ collegando un generatore indipendente di tensione tra i terminali della porta 2. Similmente a quanto sopra, quindi:
+	\[\begin{cases}
+		h_{12} = \left.\frac{v_1}{v_{2}}\right|_{i_1=0} = \left.\frac{v_1}{V_{0}}\right|_{i_1=0}\\
+		h_{22} = \left.\frac{i_2}{v_{2}}\right|_{i_1=0} = \left.\frac{i_2}{V_{0}}\right|_{i_1=0}
+	\end{cases}\]
+	$h_{12}$ è dunque il \textit{guadagno in tensione (dalla porta 2 alla porta 1) con ingresso aperto (o a vuoto)}.
+	$h_{22}$ è detta \textit{conduttanza di uscita (con entrata cortocircuitata)}.
+\end{itemize}
+È dunque possibile scrivere la matrice $[H]$ con le entrata così determinate. I parametri di guadagno consentono di utilizzare componenti come amplificatori di tensione o corrente. Anche senza conoscere il funzionamento interno del componente, i parametri, indicati a catalogo, ne descrivono il funzionamento.
+ Se $g_{12} = g_{21}$, il doppio bipolo è \textit{reciproco}. Come per la rappresentazione r, si dimostra che tutti i doppi bipoli che contengono solo resistori sono reciproci.\\
+ 
+ Chiamiamo rappresentazione H' la rappresentazione in cui le variabili indipendenti sono $v_1$ e $i_2$:
+ \[\begin{cases}
+ 	i_1 = i_1 (v_1, i_2) = h'_{11} v_1 + h'_{12} i_2
+ 	v_2 = v_2 (v_1, i_2) = h'_{21} v_1 + h'_{22} i_2\\
+ \end{cases}\]
+ In forma matriciale,
+ \[\begin{bmatrix}
+ 	i_1\\
+ 	v_2
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	h'_{11} & h'_{12}\\
+ 	h'_{21} & h'_{22}\\
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	v_1\\
+ 	i_2
+ \end{bmatrix}\]
+ Chiamiamo la matrice $[H']$ così composta \textit{matrice ibrida inversa}.
+ 
+ Prove semplici:\\
+ Come nel caso precedente, l'obiettivo è annullare, in ciascuna prova semplice, il termine relativo a una delle due variabili indipendenti per ciascuna prova (in questo caso, alternativamente $v_1 = 0$ e $i_2 = 0$)
+ 
+ \begin{itemize}
+ 	\item [1. ] Aprendo la porta 2, si ha $i_2 = 0$. Si può dunque imporre una tensione nota $v_1 = V_0$.
+ 	\[\begin{cases}
+ 		h'_{11} = \left.\frac{i_1}{v_{1}}\right|_{i_2=0} = \left.\frac{i_1}{V_{0}}\right|_{i_2=0}\\
+ 		h'_{21} = \left.\frac{v_2}{v_{1}}\right|_{i_2=0} = \left.\frac{v_2}{V_{0}}\right|_{i_2=0}
+ 	\end{cases}\]
+ 	$h'_{11}$ è una \textit{conduttanza di ingresso (in cortocircuito)}.\\
+ 	$h'_{21}$ è detta \textit{guadagno in tensione (dalla porta 1 alla porta 2, con uscita aperta)}.
+ 	Notiamo che queste informazioni sono complementari a quelle fornite dalla matrice ibrida diretta.
+ 	
+ 	\item [2. ] Cortocircuitando, invece, la porta 1, si ha $v_1 = 0$. Si può dunque imporre $i_2 = I_0$:
+ 	\[\begin{cases}
+ 		h'_{12} = \left.\frac{i_1}{i_{2}}\right|_{v_1=0} = \left.\frac{i_1}{I_{0}}\right|_{v_2=0}\\
+ 		h'_{22} = \left.\frac{v_2}{i_{2}}\right|_{v_1=0} = \left.\frac{v_2}{I_{0}}\right|_{v_1=0}
+ 	\end{cases}\]
+ 	$h'_{12}$ è dunque il \textit{guadagno in corrente (dalla porta 2 alla porta 1) con ingresso in cortocircuito}.
+ 	$h'_{22}$ è detta \textit{resistenza di uscita (con entrata cortocircuitata)}.
+ \end{itemize}
+ In maniera del tutto analoga agli altri casi considerati, è dunque possibile scrivere la matrice $[H']$ con le entrata così determinate.
+ 
+ \subsubsection{Rappresentazioni T, T'}
+ Definiamo T la rappresentazione di \textit{trasmissione diretta}, in cui esprimiamo le grandezza di una porta in funzione di quelle all'altra.
+ 
+ Consideriamo la \textit{rappresentazione trasmissione diretta}, e scriviamo le grandezze in entrata in funzione di quelle in uscita:
+ \[\begin{cases}
+ 	v_1 = t_{11} v_2 - t_{12} i_2\\
+ 	i_1 = t_{21} v_2 - t_{22} i_2
+ \end{cases}\]
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\linewidth]{rappresentazioneT}
+ 	\caption{Si noti il cambio di verso della corrente $i_2$ rispetto alle convenzioni precedentemente utilizzate}
+ 	\label{fig:rappresentazionet}
+ \end{figure}
+ Per convenzione, siccome questa rappresentazione viene utilizzata soprattutto per l'analisi di sistemi con doppi bipoli in cascata, si considera $i_2$ con segno opposto e verso di riferimento opposto (\cref{fig:rappresentazionet}), in modo che il verso di riferimento della corrente di uscita sia corrispondente a quello della corrente in entrata del doppio bipolo collegato in cascata. Concettualmente, comunque, il sistema matematico è del tutto equivalente agli altri già analizzati, perché il segno negativo davanti al termine di $i_2$ "neutralizza" il cambio di verso di riferimento.\\
+ Si noti anche che gli indici dei parametri non hanno, per necessità, il significato di riferimento tra una porta e l'altra, ma sono attribuiti in base all'ordine di comparsa delle variabili nel sistema.
+ 
+ In forma matriciale,
+ \[\begin{bmatrix}
+ 	v_1\\
+ 	i_1
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	t_{11} & t_{12}\\
+ 	t_{21} & t_{22}\\
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	v_2\\
+ 	-i_2
+ \end{bmatrix}\]
+ Chiamiamo la matrice $[T]$ così composta \textit{matrice trasmissione diretta}, con parametri t, \textit{parametri trasmissione diretti}.
+ 
+ Per la \textit{rappresentazione trasmissione inversa}, esprimiamo le variabili in uscita in funzione di quelle in entrata:
+ \[\begin{cases}
+ 	v_2 = t'_{11} v_1 - t'_{12} i_1\\
+ 	i_2 = t'_{21} v_1 - t'_{22} i_1
+ \end{cases}\]
+ Con segno negativo davanti alla corrente per ragioni analoghe a quanto sopra.
+ 
+ In forma matriciale,
+ \[\begin{bmatrix}
+ 	v_2\\
+ 	i_2
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	t'_{11} & t'_{12}\\
+ 	t'_{21} & t'_{22}\\
+ \end{bmatrix}
+ \begin{bmatrix}
+ 	v_1\\
+ 	-i_2
+ \end{bmatrix}\]
+ Chiamiamo la matrice $[T']$ così composta \textit{matrice trasmissione inversa}, con parametri t', \textit{parametri trasmissione inversi}.
+ 
+ Osserviamo come effettuare le prove semplici per la rappresentazione t. Analogamente ai casi precedenti, dobbiamo cercare di annullare una variabile indipendente per ricavare i valori dei parametri in condizioni "semplificate".
+ \begin{itemize}
+ 	\item [1. ] Mantendo la porta 2 aperta, si ha $i_2 = 0$. 
+ 	\[\begin{cases}
+ 		t_{11} = \left.\frac{v_1}{v_{2}}\right|_{i_2=0}
+ 		t_{21} = \left.\frac{i_i}{v_{1}}\right|_{i_2=0}
+ 	\end{cases}\]
+ 	A questo punto, però, non sarebbe possibile imporre una tensione nota $V_0$ alla porta 2, in maniera analoga a come abbiamo gestito gli altri casi, perché non è possibile contemporaneamente collegare il generatore di tensione e mantenere la porta aperta. Risulta dunque necessario effettuare una prova semplice per ciascun parametro: ne sono necessarie in tutto quattro, anziché soltanto due.
+ 	Partendo da:
+ 	\[\begin{cases}
+ 		v_2 = t'_{11} v_1 - t'_{12} i_1
+ 		i_2 = t'_{21} v_1 - t'_{22} i_1\\
+ 	\end{cases}\]
+ 	consideriamo di aprire la porta 2 e:
+ 	\begin{itemize}
+ 		\item [1.1 ] imponiamo $v_1 = V_0$.
+ 			\[t_{11} = \left.\frac{v_1}{v_{2}}\right|_{i_2=0} = \left.\frac{V_0}{v_{2}}\right|_{i_2=0}\]
+ 		\item [1.2 ] imponiamo $i_1 = I_0$.
+ 			\[t_{21} = \left.\frac{i_1}{v_{2}}\right|_{i_2=0} = \left.\frac{I_0}{v_{2}}\right|_{i_2=0}\]
+ 	\end{itemize}
+ 	
+ 	
+ 	\item [2. ] Cortocircuitando, invece, aperta la porta 2, si ha $v_2 = 0$. Similmente a quanto sopra, quindi:
+ 	\begin{itemize}
+ 		\item [2.1 ] imponiamo $v_1 = V_0$ 
+ 			\[t_{12} = - \left.\frac{v_1}{i_{2}}\right|_{v_2=0} = \left.\frac{V_0}{i_{2}}\right|_{v_2=0}\]
+ 		\item [2.2 ] imponiamo $i_1 = I_0$
+ 			\[t_{22} = -\left.\frac{i_1}{i_{2}}\right|_{v_2=0} = \left.\frac{I_0}{i_{2}}\right|_{v_2=0}\]
+ 	\end{itemize}
+\end{itemize}
+Il procedimento è del tutto analogo nel caso dei parametri t', con l'imposizione di valori noti per le variabili relative alla porta di uscita anziché a quella di ingresso.
+
+\subsection{Doppi bipoli in regime sinusoidale}
+È possibile estendere tutte le premesse e i procedimenti relativi al regime stazionario appena osservati in dettaglio al regime sinuosoidale, tramite l'analisi in dominio simbolico, semplicemente effettuando le opportune corrispondenze con i valori simbolici. Dunque, ogni valore $v$ può essere sostituito da un $\underline{V}$, ogni $i$ da un $\underline{I}$, e analogamente per le proprietà circuitali. 
+Nel caso della rappresentazione R, 
+\[\begin{cases}
+	v_1 = r_{11} i_1 + r_{12} i_2\\
+	v_2 = r_{21} i_1 + r_{22} i_2
+\end{cases}\]
+\[[v] = [R][i]\]
+La corrispettiva rappresentazione in regime simbolico è:
+\[\begin{cases}
+	\underline{V_1} = \underline{Z_{11}} \underline{I_1} + \underline{Z_{12}} \underline{I_2}\\
+	\underline{V_2} = \underline{Z_{21}} \underline{I_1} + \underline{Z_{22}} \underline{I_2}
+\end{cases}\]
+\[[\underline{V}] = [\underline{Z}][\underline{I}]\]
+In cui $[\underline{Z}]$ è detta \textit{matrice impedenza}, e le sue entrate \textit{parametri impedenza}.
+\begin{itemize}
+	\item $\underline{Z_{11}}$ Impedenza di ingresso con uscita aperta (a vuoto)
+	\item $\underline{Z_{21}}$ Impedenza di trasferimento con uscita aperta
+	\item ...
+\end{itemize}
+In maniera del tutto analoga:
+\[\begin{aligned}
+	[R]\quad \leftrightarrow \quad [\underline{Z}]\\
+	[G]\quad \leftrightarrow \quad [\underline{Y}]\\
+	[H]\quad \leftrightarrow \quad [\underline{H}]\\
+	[H']\quad \leftrightarrow \quad [\underline{H'}]\\
+	[T]\quad \leftrightarrow \quad [\underline{T}]\\
+	[T]\quad \leftrightarrow \quad [\underline{T'}]\\
+\end{aligned}\]
+In cui le matrici $\underline{H},\ \underline{H'},\ \underline{T},\ \underline{T'}$ mantengono lo stesso nome e lo stesso significato, ma hanno entrate complesse anziché reali. La matrice $\underline{Y}$ è detta \textit{matrice ammettenza}.
+
+\begin{ex}
+	Determinare i parametri $\underline{t}$ del circuito in \cref{fig:extsin} intepretandolo come un doppio bipolo.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{extsin}
+		\caption{}
+		\label{fig:extsin}
+	\end{figure}
+	\[\begin{aligned}
+		\underline{Z_C} = -\frac{1}{\omega C} = -j 2\\
+		Z_R = 4\ \Omega
+	\end{aligned}\]
+	
+	\[\begin{cases}
+		\underline{V_1} = \underline{t_{11}}\  \underline{V_2} - \underline{t_{12}}\  \underline{I_2}\\
+		\underline{I_1} = \underline{t_{21}}\  \underline{V_2} - \underline{t_{22}}\  \underline{I_2}\\
+	\end{cases}
+	\]
+	Effettuiamo quindi le prove semplici.
+	\begin{itemize}
+		\item [1. ] Facendo riferimento alla \cref{fig:extsin1},
+		\[\underline{t_{11}} = \left.\frac{\underline{V_1}}{\underline{V_2}}\right|_{\underline{I_2}=0} = \left.\frac{\underline{V_0}}{\underline{V_2}}\right|_{\underline{I_2}=0}\]
+		Considero ora che $\underline{V_2} = \underline{V_R} = Z_R \underline{I_R} = Z_R \frac{\underline{V_0}}{\underline{Z_C} + Z_R}$. Perciò
+		\[\underline{t_{11}} = \frac{\underline{V_0}}{Z_R \frac{\underline{V_0}}{\underline{Z_C} + Z_R}} = \frac{\underline{Z_C} + Z_R}{Z_R}\]
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{extsin1}
+			\caption{}
+			\label{fig:extsin1}
+		\end{figure}
+		
+		
+		\item [2. ]  Facendo riferimento alla \cref{fig:extsin2},
+		\[\underline{t_{21}} = 	\left.\frac{\underline{I_1}}{\underline{V_2}}\right|_{\underline{I_2}=0} = \left.\frac{\underline{I_0}}{\underline{V_2}}\right|_{\underline{I_2}=0}\]
+		Considero ora che $\underline{\underline{V_2}} = \underline{V_R} = Z_R \underline{I_R} = Z_R \underline{I_0}$. Perciò
+		\[\underline{t_{21}} = \frac{\underline{I_0}}{Z_R\underline{I_0}} = \frac{1}{Z_R}\]
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{extsin2}
+			\caption{}
+			\label{fig:extsin2}
+		\end{figure}
+		
+			
+		\item [3. ] Facendo riferimento alla \cref{fig:extsin3},
+		\[\underline{t_{12}} =-\left.\frac{\underline{V_1}}{\underline{I_2}}\right|_{\underline{V_2}=0} = -\left.\frac{\underline{V_0}}{\underline{I_2}}\right|_{\underline{V_2}=0}\].
+		Notiamo che $\underline{I_2} = - \underline{I_1} = - \frac{\underline{V_0}}{\underline{Z_C}}$. Dunque:
+		\[\underline{t_{12}} =  -\frac{\underline{V_0}}{\frac{\underline{V_0}}{\underline{Z_C}}} = \underline{Z_C}\]
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.7\linewidth]{extsin3}
+			\caption{}
+			\label{fig:extsin3}
+		\end{figure}
+		
+		\item [4. ] Facendo riferimento alla \cref{fig:extsin4},
+		\[\underline{t_{22}} =-\left.\frac{\underline{I_1}}{\underline{I_2}}\right|_{\underline{V_2}=0} = -\left.\frac{\underline{I_0}}{\underline{I_2}}\right|_{\underline{V_2}=0}\].
+		Notiamo che $\underline{I_2} = - \underline{I_0}$. Dunque:
+		\[\underline{t_{12}} =  -\frac{\underline{I_0}}{-{\underline{I_0}}} = 1\]
+	\end{itemize}
+\end{ex}
+
+\subsection{Connessioni tra doppi bipoli}
+\subsubsection{Bipoli in serie a un doppio bipolo}
+Presentiamo il caso in cui il doppio bipolo sia rappresentabile tramite rappresentazione $\underline{Z}$.
+Facendo riferimento alla \cref{fig:bseriedb}, osserviamo che le impedenze connesse in serie a un doppio bipolo si sommano alle impedenze di ingresso/uscita del doppio bipolo.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{BserieDB}
+	\caption{}
+	\label{fig:bseriedb}
+\end{figure}
+Dunque se la matrice impedenza associata al doppio bipolo iniziale è: 
+\[\underline{Z} = 
+\begin{bmatrix}
+	\underline{Z_{11}} & \underline{Z_{12}}\\
+	\underline{Z_{21}} & \underline{Z_{22}}\\
+\end{bmatrix}\]
+La matrice associata al sistema serie è:
+\[\underline{Z'} = 
+\begin{bmatrix}
+	\underline{Z_{11}} + \underline{Z_1} & \underline{Z_{12}}\\
+	\underline{Z_{21}} & \underline{Z_{22}} + \underline{Z_2}\\
+\end{bmatrix}\]
+
+\subsubsection{Bipoli in parallelo (alle porte) di un doppio bipolo}
+Presentiamo il caso in cui il doppio bipolo sia rappresentabile tramite rappresentazione $\underline{Y}$.
+Analogamente al caso precedente, facendo riferimento alla \cref{fig:bparallelodb}, osserviamo che le ammettenze connesse in parallelo a un doppio bipolo si sommano alle ammettenze di ingresso/uscita del doppio bipolo.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{BparalleloDB}
+	\caption{}
+	\label{fig:bparallelodb}
+\end{figure}
+
+Dunque se la matrice impedenza associata al doppio bipolo iniziale è: 
+\[\underline{Y} = 
+\begin{bmatrix}
+	\underline{Y_{11}} & \underline{Y_{12}}\\
+	\underline{Y_{21}} & \underline{Y_{22}}\\
+\end{bmatrix}\]
+La matrice associata al sistema serie è:
+\[\underline{Y'} = 
+\begin{bmatrix}
+	\underline{Y_{11}} + \underline{Y_1} & \underline{Y_{12}}\\
+	\underline{Y_{21}} & \underline{Y_{22}} + \underline{Y_2}\\
+\end{bmatrix}\]
+
+Nel caso di configurazioni più complesse o miste, è necessario risolvere il circuito complesso, e, in generale, non è possibile attuare una semplificazione diretta di questo tipo.
+
+\subsubsection{Collegamento in serie tra doppi bipoli}
+Consideriamo due doppi bipoli rappresentabili tramite rappresentazione $\underline{Z}$, come in \cref{fig:seriedb}. Analogamente ai bipoli, anche due doppi bipoli collegati in serie saranno attraversati dalla stessa corrente in ingresso e in uscita: questa è la ragione del collegamento in figura. Dunque, osserviamo le conseguenze del collegamento in serie:
+\[\begin{cases}
+	\underline{I_{1a}} = \underline{I_{1b}} = \underline{I_1}\\
+	\underline{I_{2a}} = \underline{I_{2b}} = \underline{I_2}\\
+	\underline{V_{1}} = \underline{V_{1a}} +  \underline{V_{1b}}\\
+	\underline{V_{2}} = \underline{V_{2a}} +  \underline{V_{2b}}
+\end{cases}\]
+Perciò è possibile considerare la serie dei due bipoli come un unico doppio bipolo, con correnti e tensioni in ingresso e uscita descritti dal sistema appena considerato. Per determinare la rappresentazione $\underline{Z_eq}$ del nuovo doppio bipolo ottenuto, osserviamo che:
+\[\begin{aligned}
+	a:\quad [\underline{V_a}] = [\underline{Z_a}][\underline{I}]\\
+	b:\quad [\underline{V_b}] = [\underline{Z_b}][\underline{I}]
+\end{aligned}
+\]
+Dunque:
+\[ [\underline{V}] = [\underline{V_a}] + [\underline{V_b}] = ([\underline{Z_a}] + [\underline{Z_b}]) [\underline{I}]\].
+Quindi, definita $[\underline{Z_eq}] = [\underline{Z_a}] + [\underline{Z_b}]$, la legge costitutiva del doppio bipolo ottenuto è:
+\[[\underline{V}] = [\underline{Z_eq}] [\underline{I}]\]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{seriedb}
+	\caption{Collegamento in serie di due doppi bipoli}
+	\label{fig:seriedb}
+\end{figure}
+
+\subsubsection{Collegamento in parallelo tra doppi bipoli}
+Consideriamo due doppi bipoli rappresentabili tramite rappresentazione $\underline{Y}$, come in \cref{fig:parallelodb}. Analogamente ai bipoli, anche due doppi bipoli collegati in parallelo saranno sottoposti alla stessa tensione. Dunque, osserviamo le conseguenze del collegamento in parallelo:
+\[\begin{cases}
+	\underline{V_{1a}} = \underline{V_{1b}} = \underline{V_1}\\
+	\underline{V_{2a}} = \underline{V_{2b}} = \underline{V_2}\\
+	\underline{I_{1}} = \underline{I_{1a}} +  \underline{I_{1b}}\\
+	\underline{I_{2}} = \underline{I_{2a}} +  \underline{I_{2b}}
+\end{cases}\]
+Perciò è possibile considerare il parallelo dei due bipoli come un unico doppio bipolo, con relazioni tra correnti e tensioni in ingresso e uscita dei due doppi bipoli e quelle del doppio bipolo risultante descritte dal sistema appena considerato. Analogamente al caso precedente della serie di doppi bipoli, er determinare la rappresentazione $\underline{Y_{eq}}$ del nuovo doppio bipolo ottenuto, osserviamo che:
+\[\begin{aligned}
+	a:\quad [\underline{I_a}] = [\underline{Z_a}][\underline{V}]\\
+	b:\quad [\underline{I_b}] = [\underline{Z_b}][\underline{V}]
+\end{aligned}
+\]
+Dunque:
+\[ [\underline{I}] = [\underline{I_a}] + [\underline{I_b}] = ([\underline{Y_a}] + [\underline{Y_b}]) [\underline{V}]\].
+Quindi, definita $[\underline{y_{eq}}] = [\underline{Y_a}] + [\underline{Y_b}]$, la legge costitutiva del doppio bipolo ottenuto è:
+\[[\underline{I}] = [\underline{y_{eq}}] [\underline{V}]\]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{parallelodb}
+	\caption{Collegamento in parallelo di due doppi bipoli}
+	\label{fig:parallelodb}
+\end{figure}
+
+\subsubsection{Collegamento di doppi bipoli in cascata}
+Consideriamo due bipoli rappresentabili in trasmissione diretta (rappresentazione $\underline{T}$) collegati come in \cref{fig:cascatadb}. Tale collegamento è detto \textit{in cascata}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{cascatadb}
+	\caption{Collegamento in cascata di due doppi bipoli}
+	\label{fig:cascatadb}
+\end{figure}
+Omettendo dimostrazione e calcoli, osserviamo che il doppio bipolo equivalente risulta descritto dalla relazione
+\[\begin{bmatrix}
+	\underline{V_{1a}}\\
+	\underline{I_{1a}}
+\end{bmatrix}
+=
+(\begin{bmatrix}
+	\underline{T_{a}}
+\end{bmatrix})
+\cdot
+\begin{bmatrix}
+	\underline{T_{b}}
+\end{bmatrix}
+\begin{bmatrix}
+\underline{V_{2b}}\\
+-\underline{I_{2b}}
+\end{bmatrix}
+\]
+In cui \[ [\underline{T_{eq}}] = [\underline{T_a}]\cdot[\underline{T_b}]\]
+\subsubsection{Calcoli con doppi bipoli in serie e parallelo}
+Nel caso in cui si abbia una rappresentazione non ideale per effettuare i calcoli relativi a serie a parallelo, o di altra natura, è possibile effettuare la conversione tramite l'ausilio di opportune tabelle simboliche, che permettono di ottenere ogni rappresentazione a partire da ciascuna delle altre cinque, ammesso che tale rappresentazione esista per il componente considerato. Per questo corso, l'utilizzo delle tabelle è consigliato soltanto per verificare i risultati, in quanto sarà richiesto di determinare i parametri di diverse rappresentazioni unicamente tramite prove semplici, come esercizio.
+Nel caso in cui si tenti di utilizzare questo metodo per una conversione verso una rappresentazione non ammessa per il componente in analisi, si ottiene un determinante nullo, che rende impossibile procedere con i calcoli.
+Si noti, infine, che in alcuni casi, nelle tabelle di conversione i parametri t possono essere indicati, ad esempio, con le lettere $A,\ B,\ C,\ D$, anziché con i doppi pedici, onde evitare confusione concettuale in merito alle relazioni con porte di entrata e uscita.

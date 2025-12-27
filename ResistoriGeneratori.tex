@@ -1,0 +1,313 @@
+\section{Resistore lineare}
+\begin{dfn}[Resistore lineare]
+	Componente circuitale in cui si "concentra" la proprietà fisica della resistenza elettrica. È più che un semplice modello del resistore fisico, in quanto può assumere le proprietà di resistenza di altre parti del circuito. 
+\end{dfn}
+\begin{legge}[Legge costitutiva del resistore lineare] \[ v(t) = R i(t)\]
+	\[i(t) = G v(t)\]
+	secondo la convenzione dell'utilizzatore. $R$ è detta \textsl{resistenza elettrica} ed è misurato in $\Omega$ (\textsl{Ohm}); $G =\frac{1}{R}$ \textsl{conduttanza elettrica}, misurata in $S$ (Siemens)
+\end{legge}
+Classificazione del componente:
+\begin{itemize}
+	\item Controllato in corrente e in tensione;
+	\item Lineare ($R$ non dipende da $i(t)$; $G$ non dipende da $v(t)$);
+	\item Senza memoria;
+	\item Tempo-invariante ($R$ è costante);
+	\item Passivo ($p_A(t)= Ri^2(t) = G v^2(t) \geq 0 \Rightarrow W_A(t) \geq 0$;
+\end{itemize}
+\subsection{Resistori in serie e partitore di tensione}
+Resistori in serie:
+\[LKT_{\Gamma}: v= \sum_k v_k= (\sum_k R_k) i = R_{eq} i\]
+con $R_{eq} = \sum_k R_k$. Posso dunque semplificare il circuito considerando la serie come un unico resistore con resistenza $R_{eq}$.
+\begin{dfn}[Partitore di tensione]
+	Serie di resistori. Ci interessiamo alla caduta di tensione dopo ciascun resistore.\\
+	Detta $v$ la tensione applicata alla serie, la caduta di tensione sul resistore $k$-esimo è \[v_k = \frac{R_k}{R_{eq}}v\]
+\end{dfn}
+\subsection{Resistori in parallelo e partitore di corrente}
+Resistori in parallelo:
+\[LKC_A: i = \sum_k i_k = \sum_k G_kv = (\sum_k G_k) v = G_{eq} v\]
+con $G_{eq} = \sum_k G_k = \frac{1}{R_{eq}}$, da cui $R_{eq} = \frac{1}{\sum_k \frac{1}{R_k}}$. Posso dunque semplificare il circuito considerando la serie come un unico resistore con resistenza $R_{eq}$.
+\begin{dfn}[Partitore di corrente]
+	Parallelo di resistori. Ci interessiamo alla corrente che scorre in ciascun resistore.\\
+	Detta $i$ la corrente che scorre nel parallelo, la corrente che scorre nel resistore $k$-esimo è \[i_k = \frac{G_k}{G_{eq}}i = \frac{R_{eq}}{R_k} i \]
+\end{dfn}
+\subsection{Cortocircuito}
+Nel caso in cui uno dei rami del parallelo abbia resistenza nulla, tutta la corrente passa in quel ramo, e la tensione ai due capi risulta nulla. Definiamo un ramo così caratterizzato \textsl{componente cortocircuito}.
+\begin{dfn}[Componente cortocircuito]
+	Tratto di conduttore ideale
+\end{dfn}
+\begin{legge} [Legge costitutiva del cortocircuito]
+	\[v(t) = 0 \quad \forall i(t)\]
+\end{legge}
+Osserviamo che questo è un componente inerte ($p_A(t)= 0 \quad \forall i(t)$;
+Un cortocircuito reale ha una resistenza molto piccola ma finita, dunque vi può circolare un'elevata corrente, che può essere dissipata in calore al punto da generare, ad esempio, incendi.
+
+\subsection{Circuito aperto}
+Simmetricamente, nel caso in cui un ramo abbia resistenza infinita, tutta la corrente passa nel ramo opposto, e tale si comporta come un circuito aperto. 
+\begin{dfn}[Componente circuito aperto]
+	Tratto con resistenza infinita.
+\end{dfn}
+\begin{legge} [Legge costitutiva del cortocircuito]
+	\[i(t) = 0 \quad \forall v(t)\]
+\end{legge}
+Osserviamo che anche questo è un componente inerte ($p_A(t)= 0 \quad \forall v(t)$.
+
+\subsection{Trasformazioni triangolo-stella nella connessione di resistori}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{triang}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{stella}
+	\end{subfigure}
+	\caption{Configurazioni di resistori a triangolo (a sinistra) e a stella (a destra).}
+	\label{fig:triang_stella}
+\end{figure}
+Per ottenere la \textbf{\textsl{stella equivalente al triangolo}}:
+\begin{itemize}
+	\item [1] Aggiungere un centro-stella;
+	\item [2] Disegnare $R_A$, $R_B$, $R_C$
+	\item [3] Si dimostra che: 
+	\begin{equation}\tag{trasformazioni triangolo-stella}
+		\label{eq:triangolo-stella}
+		\begin{split}
+			R_A = \frac{R_{AB}R_{AC}}{R_{AB} + R_{BC} + R_{AC}}\\
+			R_B = \frac{R_{AC}R_{BC}}{R_{AB} + R_{BC} + R_{AC}}\\
+			R_A = \frac{R_{AB}R_{AC}}{R_{AB} + R_{BC} + R_{AC}}
+		\end{split}
+	\end{equation}
+\end{itemize}
+Nel caso particolare $R_{AB}=R_{BC}=R_{AC}= R_{\Delta}$, $R_A = R_B = R_C = R_{\Delta}/3$.\\
+\\
+
+Al contrario, per ottenere il \textbf{\textsl{triangolo equivalente alla stella}}:
+\begin{itemize}
+	\item [1] Rimuovere centro-stella;
+	\item [2] Disegnare $R_{AB}$, $R_{BC}$, $R_{AC}$
+	\item [3] Si dimostra che: 
+	\begin{equation}\tag{trasformazioni stella-triangolo}
+		\label{eq:stella-triangolo}
+		\begin{split}
+			R_{AB} = \frac{R_{A}R_{B} + R_{B}R_{C} + R_{A}R_{C}}{R_C}\\
+			R_{BC} = \frac{R_{A}R_{B} + R_{B}R_{C} + R_{A}R_{C}}{R_A}\\
+			R_{AC}=  \frac{R_{A}R_{B} + R_{B}R_{C} + R_{A}R_{C}}{R_B}
+		\end{split}
+	\end{equation}
+\end{itemize}
+Nel caso particolare $R_{A}=R_{B}=R_{C}= R_{stella}$, $R_{AB} = R_{BC} = R_{AC} = 3R_{stella}$.\\
+\\
+Per un esercizio sul tema, si faccia riferimento all'\cref{esercizio:3}. L'esercizio è riportato in seguito perché comprende un generatore, componente che sarà trattato nel prossimo capitolo. 
+
+
+\section{Generatori indipendenti di tensione e di corrente}
+\subsection{Generatori ideali}
+\begin{dfn}[Generatore indipendente di tensione]
+	Nella notazione U.S., il simbolo è un cerchio con un segno + e uno - che ne indicano la polarità. Chiamiamo $V_g$ la fem del generatore. Nella notazione UE e ITA, il simbolo è un cerchio contenente una freccia che indica nel verso della polarizzazione. Per questo componente si utilizza la convenzione dell'utilizzatore.
+\end{dfn}
+\begin{legge}[Legge costitutiva del generatore di tensione]
+	\[v(t) = V_g \quad \forall i(t)\]
+\end{legge}
+Classificazione:
+\begin{itemize}
+	\item Controllato in corrente (non possibile scriverlo in una forma controllata in tensione)
+	\item Non lineare
+	\item Senza memoria
+	\item Attivo (Comportamento energetico: $P_E(t) = V_g i(t)$, per ogni caso; può anche assorbire energia oltre a erogarne)
+\end{itemize}
+
+\begin{dfn}[Generatore indipendente di corrente]
+	Nella notazione U.S., il simbolo è un cerchio con una freccia verso l'alto che indica il verso di riferimento della corrente generata. Chiamiamo $I_g$ la corrente generata dal generatore. Nella notazione UE e ITA, il simbolo è un cerchio contenente un trattino. Per questo componente si utilizza la convenzione dell'utilizzatore.
+\end{dfn}
+\begin{legge}[Legge costitutiva del generatore di corrente]
+	\[i(t) = I_g \quad \forall v(t)\]
+\end{legge}
+Classificazione:
+\begin{itemize}
+	\item Controllato in tensione (non possibile scriverlo in una forma controllata in corrente)
+	\item Non lineare
+	\item Senza memoria
+	\item Attivo (Comportamento energetico: $P_E(t) = v(t)I_g$, per ogni caso; può anche assorbire energia oltre a erogarne)
+\end{itemize}
+Per giustificare il fatto che dei generatori possano assorbire energie, si pensi a componenti reali modellizzati da questi componenti, quali le batterie delle auto elettriche, che possono assorbire energia dalle frenate.
+
+Sono circuiti impossibili:
+\begin{itemize}
+	\item Generatore di tensione cortocircuitato.
+	\item Generatore di corrente in serie a un circuito aperto.
+\end{itemize}
+
+\begin{ex}
+	\label{ex:1}
+	In \cref{fig:esercizio1}, siano $R_1 = 1 \Omega$, $R_2 = 6 \Omega$, $R_3 = 4 \Omega$, $R_4 = 2 \Omega$, $R_5 = 1 \Omega$, $I_g = 1A$.\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{Esercizio1}
+		\caption{}
+		\label{fig:esercizio1}
+	\end{figure}
+	Verifichiamo il teorema di conservazione della potenza.
+	Si semplifica il circuito, considerando che:
+	\begin{enumerate}
+		\item $R_5$ è in parallelo al cortocircuito (\cref{fig:ex11})
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.5\linewidth]{ex1_3}
+			\caption{}
+			\label{fig:ex11}
+		\end{figure}	
+		
+		\item $R_3$ e $R_4$ sono in serie, con resistenza equivalente $R_{eq1} = 6 \Omega$ (\cref{fig:ex12})
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{ex1_2}
+			\caption{}
+			\label{fig:ex12}
+		\end{figure}
+		
+		\item $R_2$ è in parallelo a  $R_{eq_1}$, con $R_{eq_2}= 3 \Omega $ (\cref{fig:ex13})
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.5\linewidth]{ex1_1}
+			\caption{}
+			\label{fig:ex13}
+		\end{figure}
+		
+		\item $R_1$ è in serie a $R_{eq_2}$ con $R_{eq}= 4 \Omega$
+	\end{enumerate}
+	
+	\[P_{A, R_{eq}} = R_{eq} i_{eq}^2 =  4 \Omega \cdot \ (1A)^2 = 4\  W\]
+	\[P_{E, I_g} = V_g \cdot I_g = v_{R_{eq}} I_g = R_{eq} i_{R_eq} I_g = 4\ W = P_{A, R_{eq}}\]
+	Calcoliamo anche la potenza assorbita da ciascun resistore. Procediamo a ritroso nella semplificazione del circuito: 
+	\begin{itemize}
+		\item dalla \cref{fig:ex13}, $P_{A,R_1}= R_1 i_{R_1}^2 = 1\ W$;
+		\item dalla \cref{fig:ex12}, $i_{R_2} = \frac{E_{eq1}}{R_2 + R_{eq1}}= 0,5\ A$, dunque $P_{A,R_2}= R_2 i_{R_2}^2 = 1,5\ W$;
+		\item dalla \cref{fig:ex11}, $i_{R_3} = i_{R_1} - i_{R_2}= 0,5\ A$, da cui $P_{A,R_3}= 1\ W$ e $P_{A,R_4}= 1\ W$. 
+	\end{itemize}
+	Risulta comunque che:
+	\[P_{E,g}- \sum_k P_{A,R_k} = 0\]
+\end{ex}
+
+\subsection{Generatori reali}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{genReali}
+	\caption{Schema della rappresentazione di generatori reali tramite componenti ideali.}
+	\label{fig:genreali}
+\end{figure}
+Per un generatore di tensione, un generatore reale può essere rappresentata come un generatore reale in serie a una resistenza interna (detta \textsl{resistenza serie}, $R_g$) (A sinistra in \cref{fig:genreali}).
+\[LKT:\ v = V_g -v_{R_g} = V_g - R_g i \]
+$v_{R_g}$ è detta \textsl{caduta di tensione} sulla resistenza interna. A parità di corrente erogata, maggiore è la resistenza interna, minore la tensione effettivamente generata dal generatore reale. Per questa ragione, in ambito circuitale, la fem è definita come la tensione "a vuoto" di un generatore reale, ed è dunque distinta dalla tensione effettivamente generata dal generatore in attività.\\
+\\
+Per un generatore di corrente, un generatore reali può essere rappresentato come un generatore reale in parallelo a una resistenza interna (detta \textsl{resistenza parallelo}. $R_g$) (A destra in \cref{fig:genreali}).
+\[LKC:\ i = I_g - i_{R_g} = I_g - \frac{v}{R_g} \]
+A pari tensione, all'aumentare della resistenza parallelo, aumenta la corrente effettivamente erogata, fino al valore di $I_g$.\\
+\subsection{Generatori pilotati}
+\begin{dfn}
+	Un generatore la cui variabile (tensione/corrente) imposta dal generatore viene pilotata da un'altra tensione/corrente del circuito.
+\end{dfn}
+\begin{description}
+	
+	\item [Generatore di tensione pilotato in tensione] $v(t) = \alpha v_k(t) \quad \forall i(t)$, con $\alpha$ detto \textsl{guadagno in tensione}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\linewidth]{genvpilv}
+		\caption{Esempio di circuito contenente un generatore di tensione pilotato in tensione}
+		\label{fig:genvpilv}
+	\end{figure}
+	
+	\item [Generatore di tensione pilotato in corrente] $v(t) = r i_k(t) \quad \forall i(t)$, con $r$ detto \textsl{resistenza di trasferimento}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{genvpili}
+		\caption{Simbologia per un generatore di tensione pilotato in corrente}
+		\label{fig:genvpili}
+	\end{figure}
+	
+	\item [Generatore di corrente pilotato in corrente] $i(t) = \beta i_k(t) \quad \forall v(t)$, con $\beta$ detto \textsl{guadagno in corrente}. 
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{genipili}
+		\caption{Simbologia per un generatore di corrente pilotato in corrente}
+		\label{fig:genipili}
+	\end{figure}
+	
+	\item [Generatore di corrente pilotato in tensione] $i(t) = g v_k(t) \quad \forall v(t)$, con $g$ detto \textsl{conduttanza di trasferimento}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{genipilv}
+		\caption{Simbologia per un generatore di corrente pilotato in tensione}
+		\label{fig:genipilv}
+	\end{figure}
+\end{description}
+Classificazione:
+\begin{itemize}
+	\item senza memoria
+	\item non lineari
+	\item attivi
+\end{itemize}
+
+\begin{ex}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\linewidth]{expil}
+		\caption{}
+		\label{fig:expil}
+	\end{figure}
+	Siano: $R_1 = 1\ \Omega$, $R_2 = 5 \ Omega$, $V_g = 45V$, $\alpha = 3$. Calcolare la corrente circolante nel circuito.
+	\begin{itemize}
+		\item scrivere una LK che includa la variabile pilotata del generatore.
+		\[LKT_I = V_g - v_{R_1} - v_{R_2} +\alpha v_{R_1}\]
+		\item Eventualmente, sostituire le tensioni/correnti nella LK con leggi costitutive.
+		\[LKT_I = V_g - R_1i - R_2i +\alpha R_1i\]
+		Da cui:
+		\[i=\frac{V_g}{R_1 (1 - \alpha) + R_2} = 15 \ A\]
+	\end{itemize}
+\end{ex}
+
+\begin{ex}
+	\label{esercizio:3}
+	Calcolare $P_{E,g}$ nel circuito in \cref{fig:esercizio2}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{Esercizio2}
+		\caption{}
+		\label{fig:esercizio2}
+	\end{figure}
+	Procediamo alla trasformazione stella-triangolo dei resistori 2, 3 e 4. Otteniamo il circuito in \cref{fig:ex2trasf}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex2trasf}
+		\caption{}
+		\label{fig:ex2trasf}
+	\end{figure}
+	Applicando le \ref{eq:triangolo-stella},$R_{AB} = 54\ \Omega $, $R_{BC} = 13,5\ \Omega$, $R_{AC} = 54\ \Omega$.
+	Procediamo con la semplificazione serie-parallelo:
+	\begin{itemize}
+		\item $R_1$ è in parallelo a $R_{AB}$, con $R_{eq1}=\frac{27}{5}\ \Omega$;
+		\item $R_5$ è in parallelo a $R_{BC}$, con $R_{eq2}=\frac{27}{5}\ \Omega$;
+		\item $R_{eq1}$ e $R_{eq2}$ sono in serie con $R_{eq3} = \frac{54}{5}\ \Omega$;
+		\item $R_{AC}$ è in parallelo a $R_{eq3}$, con $R_{eq}= 9\ \Omega$.
+	\end{itemize}
+	Risulta dunque che $P_{E_g} = P_{A,R_{eq}} = \frac{V_g^2}{R_{eq}} = 144 W$.\\
+	\\
+	Analogamente, si può risolvere l'esercizio applicando una trasformazione triangolo-stella, ottenendo il circuito in \cref{fig:ex2trasfalt}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{ex2trasfalt}
+		\caption{}
+		\label{fig:ex2trasfalt}
+	\end{figure}
+	Applicando le \ref{eq:stella-triangolo},$R_{A} = 4\ \Omega $, $R_{B} = 1\ \Omega$, $R_{O} = 4\ \Omega$.
+	Procediamo con la semplificazione serie-parallelo:
+	\begin{itemize}
+		\item $R_O$ è in serie con $R_{4}$, con $R_{eq1}=10 \Omega$
+		\item $R_B$ è in serie con $R_{5}$ $R_{eq2}=10 \Omega$;
+		\item $R_{eq1}$ è in parallelo a $R_{eq2}$, con $R_{eq3}=5\ \Omega$;
+		\item $R_{eq1}$ e $R_{eq2}$ sono in serie con $R_{eq3} = \frac{54}{5}\ \Omega$;
+		\item $R_{A}$ è in serie a $R_{eq3}$, con $R_{eq}= 9\ \Omega$.
+	\end{itemize}
+	Risulta quindi, $P_{E_g} = P_{A,R_{eq}} = \frac{V_g^2}{R_{eq}} = 144 W$, coerentemente con quanto risultante dalla prima risoluzione.
+\end{ex}

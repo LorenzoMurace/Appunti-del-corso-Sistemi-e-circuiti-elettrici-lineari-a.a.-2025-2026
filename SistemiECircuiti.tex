@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}   
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{standalone}
+\usepackage[noabbrev]{cleveref}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepackage[labelsep=period]{caption}
+\usepgfplotslibrary{fillbetween}
+\usepackage[american]{circuitikz}
+
+% Questa riga è  raccomandata per la compatibilità:
+\pgfplotsset{compat=1.18}
+
+\usepackage{amssymb}     % Necessario per \mathbb{C}
+\usepackage{xcolor}      % Necessario per i colori (magenta, red)
+\usepackage{tikz}        % Il pacchetto principale per disegnare
+\usetikzlibrary{
+	positioning,    % Per posizionare i nodi (es. below=of)
+	arrows.meta,    % Per stili di freccia moderni (es. Stealth)
+	calc,            % Per calcolare le coordinate (per la X)
+	angles,          % Per l'angolo retto
+	quotes,          % Per le etichette sugli angoli
+	decorations.pathmorphing, % Per la freccia a "serpente"
+	patterns,		% per il tratteggio
+	decorations.pathreplacing
+}
+
+\graphicspath{{immagini/}}
+
+\newtheorem{dfn}{Definizione}
+\newtheorem{legge}{Legge}
+\newtheorem{thr}{Teorema}
+\newtheorem{proprietà}{Proprietà}
+\newtheorem{es}{Esempio}
+\newtheorem{ex}{Esercizio}
+\renewcommand{\figurename}{Figura}
+\crefname{figure}{Figura}{figure}
+\crefname{ex}{Esercizio}{Esercizi}
+\crefname{dfn}{Definizione}{Definizioni}
+\crefname{equation}{Equazione}{Equazioni}
+
+
+
+\title{Appunti del corso Sistemi e circuiti elettrici lineari}
+\author{Docente del corso: dott. Arturo Popoli, PhD\\Appunti di: Lorenzo Murace}
+\date{Primo Semestre a.a. 2025/2026}
+
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\include{cenniElettromagnetismo.tex}
+\include{ElettromagnetismoMateria.tex}
+\include{CircuitiParametriConcentrati.tex}
+\include{ResistoriGeneratori.tex}
+\include{Metodi.tex}
+\include{ComponentiDinamici.tex}
+\include{RegimeSinusoidale.tex}
+\include{ProprietaCircLin.tex}
+\include{DoppioBipolo.tex}
+\include{CircuitiDinamici.tex}
+\include{ValiditàCircuiti.tex}
+
+\end{document}

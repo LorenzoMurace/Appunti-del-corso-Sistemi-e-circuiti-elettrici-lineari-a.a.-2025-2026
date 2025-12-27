@@ -1,0 +1,166 @@
+\section{Introduzione ai circuiti elettrici a parametri concentrati}
+\subsection{Definizioni fondamentali}
+Si distinguerà d'ora in poi tra:
+\begin{description}
+	\item [\textsl{circuito fisico}]: ha luogo nella realtà ed è costituito da componenti materiali (es. un filo in cui circola corrente, la stessa per ogni sezione, in quanto è un tubo di flusso di $\vec J_t$). Risolverlo significa risolvere le equazioni di Maxwell nella materia che costituiscono un sistema di equazioni differenziali alle derivate parziali $f(x,y,z,t)$. Si ottiene come risultato una soluzione esatta, analitica per i valori di tutti i campi in ogni posizione nello spazio: problema $3D$ (tre coordinate spaziali e una temporale)
+	\item[\textsl{circuito a parametri concentrati}]: Rappresentazione approssimata di un circuito fisico, mediante \textsl{componenti (circuitali)} e \textsl{collegamenti ideali}. Utile a una risoluzione approssimata ma comunque affidabile e più rapida del sistema. Rinunciando alla descrizione accurata (in termini di coordinate spaziali), risolvere il circuito significa risolvere un sistema di equazioni differenziali ordinarie: problema $0D$ (solo coordinata temporale).\\
+	Si fonda su tre ipotesi:
+	\begin{itemize}
+		\item i collegamenti sono ideali ($\sigma = \infty\ \iff \rho = 0$)
+		\item lo spazio esterno ai collegamenti e ai componenti è perfettamente isolante ($\sigma = 0\ \iff \rho = \infty$)
+		\item nello spazio esterno, (1) $\frac{\partial \vec B}{\partial t}\approx 0$, cosicché $\vec E$ sia conservativo e $\vec E = \nabla \varphi$ dove $\phi$ è il potenziale elettrico, misurato in $V$ e (2) $\frac{\partial \vec D}{\partial t}\approx 0$, cosicché $\nabla \times \vec H = \vec J$ e dunque $\vec J$ è un campo solenoidale ($\nabla \cdot \vec J = 0$). Da queste due condizioni derivano le Leggi di Kirchhoff.
+	\end{itemize}
+\end{description}
+\subsubsection{Parti del circuito}
+\begin{dfn}[componente]
+	Sottosistema delimitato da una \textsl{superficie limite} che può essere attraversata da correnti sono in corrispondenza dei \textsl{terminali}, ossia le regioni di contatto con i collegamenti esterni.\\
+	Un componente con 2 terminali è detto \textsl{dipolo}; uno con 3, \textsl{tripolo}, uno con n, \textsl{n-polo}.
+\end{dfn}
+\begin{dfn}[Nodo (polo)] Un nodo (o polo) si intende indistintamente una delle due seguenti configurazioni:
+	\begin{enumerate}
+		\item terminale isolato
+		\item insieme di più terminali connessi da collegamenti ideali.
+	\end{enumerate}
+\end{dfn}
+\begin{dfn}[Ramo]
+	Tratto del circuito che unisce due nodi adiacenti.
+\end{dfn}
+\begin{legge}[Principio di invarianza topologica]
+	Osserviamo che alcuni fatti soltanto alcuni fatti sono rilevanti per il comportamento del circuito.
+	\begin{description}
+		\item[Influenzano il comportamento del circuito:] \leavevmode
+		\begin{itemize}
+			\item la tipologia dei componenti
+			\item la topologia del circuito
+		\end{itemize}
+		\item[Non influenzano il comportamento del circuito:] \leavevmode
+		\begin{itemize}
+			\item la posizione dei componenti nello spazio (infatti la sua rappresentazione non corrisponde a posizioni spaziali nella realtà)
+			\item la forma dei collegamenti (che infatti sono ideali)
+		\end{itemize}
+		
+	\end{description}
+\end{legge}
+\begin{dfn}[Maglia]
+	Percorso chiuso formato da rami del circuito che attraversa una sequenza chiusa di nodi, senza passare più di una volta per lo stesso nodo.
+\end{dfn}
+\subsubsection{Grandezze}
+\begin{dfn}[Corrente]
+	La consideriamo dovuta a un moto di cariche positive (+), per convenzione.\\
+	\[i=\int_S \vec J \cdot d\vec S = \frac{dQ}{dt}\]
+	con $S$ generica perché il circuito è un tubo di flusso per $J$ campo solenoidale (per le ipotesi sopra).\\ 
+	Ne risulta che:
+	\[\Delta Q = \int_t^{t+\Delta t} i(t)dt\]
+	È necessario definire un \textsl{verso di riferimento (VDR)} per effettuare il calcolo di una corrente $i$ tra due punti, in analogia con la necessità di assegnare un verso alla normale della superficie per calcolare il flusso. Tale verso è (1) arbitrario e (2) costante nel tempo. Effettuati i calcoli, è possibile che il \textsl{verso effettivo} risulti concorde ($i>0$) oppure discorde ($i<0$) con quello di riferimento.
+\end{dfn}
+\begin{dfn}[Tensione]\label{dfn:tensione}
+	Variazione di energia per unità di carica quando una carica puntiforme si sposta da un A a B.
+	\[v_{AB}=\int_A^B \vec E \cdot d \vec l = - \int_A^B \nabla \varphi \cdot d \vec l = - (\varphi(B) - \varphi(A))= \varphi_A - \varphi_B\]
+	Tensione e differenza di potenziale in generale non sono la stessa cosa. Coincidono soltanto nel caso in cui $\nabla \times \vec E = 0$, ossia se $\vec E$ è conservativo.\\
+	Per calcolare la tensione tra due punti, è necessario determinare un verso di riferimento, arbitrario e costante. Se $v_{AB}>0$, una carica che si sposta da $A$ a $B$ perde energia potenziale elettrica. Viceversa, $v_{AB}<0$, una carica che si sposta da $A$ a $B$ perde energia.
+\end{dfn}
+\subsection{Leggi di Kirchhoff - Leggi topologiche}
+\begin{legge}[Legge di Kirchhoff delle correnti - LKC]
+	La somma algebrica delle correnti attraverso qualsiasi superficie $S$ chiusa esterna alle superfici limite dei componenti è nulla.\\
+	Per esempio, si consideri una superficie che taglia tre rami e include un nodo ($S_1$ in \cref{fig:lkc}). Possibile considerare anche una superficie che include più nodi. Oppure ancora, una superficie che circondi sostanzialmente soltanto un nodo ($S_2$ in \cref{fig:lkc}): in questo caso prende il nome di \textsl{legge nodale}.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LKC}
+		\caption{}
+		\label{fig:lkc}
+	\end{figure}
+\end{legge}
+
+Indaghiamo il collegamento tra la LKC e la Teoria dei campi. Considero un circuito  e una superficie che circondi un nodo tra più rami. Risulta (considerando il riferimento di \cref{fig:lkc}, e indicando le superfici di sezione del filo con apici): \[\oint_{S_2} \vec J_t \cdot d \vec S = \oint_{S_2} \vec J \cdot d \vec S = \int_{S_2'} \vec J \cdot d\vec S + \int_{S_2''} \vec J \cdot d\vec - \int_{S_2'''} \vec J \cdot d\vec S = i_4 + i_5 - i_6.\] Dunque la LKC è una conseguenza del carattere solenoidale di $\vec J$ (fuori dalle superfici limite dei componenti).\\
+Conseguenze della LKC:
+\begin{description}
+	\item[corrente di ramo]. Un bipolo in generale avrebbe una corrente entrante e una uscente distinte. Ma per la LKC la loro somma algebrica deve essere nulla, dunque devono essere uguali.
+	\item [corrente in un ramo aperto (circuito aperto)]. La corrente in un ramo aperto può soltanto essere nulla, altrimenti si avrebbe una corrente entrante nel nodo terminale e nessuna corrente uscente.
+\end{description}
+
+\begin{legge}[Legge di Kirchhoff delle tensioni - LKT]
+	La somma algebrica delle tensioni lungo una curva chiusa esterna $\Gamma$ alle superfici limite dei componenti passante per una sequenza di nodi è nulla.\\
+	Per esempio, considerando la \cref{fig:lkt}, assegnato verso di riferimento a $\Gamma_1$ e alle tensioni tra i nodi. Un caso particolare si ottiene considerando la curva $\Gamma_2$, coincidente con una maglia del circuito.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LKT}
+		\caption{}
+		\label{fig:lkt}
+	\end{figure}
+	
+	
+\end{legge}
+Indaghiamo il collegamento tra la LKT e la Teoria dei campi.
+ \[\oint_{\Gamma_1} \vec E \cdot d \vec l = -\frac{d}{dt} \Phi_{B,\Gamma_1} = 0 = \sum_i \int_{A_i}^{B_i} \vec E \cdot d\vec l = \sum_i v_{A_i B_i}\]
+\subsection{Potenza ed energia}
+\begin{dfn}[Potenza per un bipolo]
+	Consideriamo un bipolo generico sottoposto a una generica $v(t)$, attraversato da una $i(t)$. Definiamo la potenza istantanea (assorbita o erogata dal componente) $p(t) = \frac{dW(t)}{dt} = \frac{dW(t)}{dQ} \frac{dQ}{dt} = v(t)i(t)$.\\
+	In circuiti in regime stazionario (corrente continua), $p(t) = P$ è la potenza, costante nel tempo.
+\end{dfn}
+Convenzioni nei versi di riferimento (calcolo potenza): 
+\begin{description}
+	\item[convenzione dell'utilizzatore] VDR i entrante nel polo (+) (definito in base a $v$): cariche da (+) a (-), quindi perdono energia (potenziale). L'energia (potenza) viene assorbita (dissipata) dal componente, dunque detto \textsl{utilizzatore}. $vi = P_A$ Potenza assorbita (se negativa, il componente eroga energia).
+	\item[convenzione del generatore] VDR i uscente dal polo (+): cariche da (-) a (+), quindi guadagnano energia. L'energia (potenza) viene erogata dal componente. $vi = P_E$ Potenza erogata (se negativa, il componente assorbe energia).
+\end{description}
+Enunciamo ora un teorema fondato sulla validità delle Leggi di Kirchhoff.
+\begin{thr}[Teorema di conservazione della potenza istantanea]
+	Per ogni circuito elettrico, la somma algebrica delle potenze erogate è uguale alla somma algebrica delle potenze istantanee assorbite.\\
+	Se $n$ sono componenti eroganti e $m$ sono utilizzatori.
+	\[\sum_{i=1}^{n} P_{E,i}(t) = \sum_{j=1}^{m} P_{A,j}(t)\]
+	Nella L5 è proposto un esempio di verifica del teorema.
+\end{thr}
+Implicazioni del teorema di conservazione della potenza istantanea. Siccome è valido anche nei circuiti reali. Ne vediamo alcuni esempi per la rete elettrica nazionale. Su dati.terna.it è possibile trovare dati sul fabbisogno nazionale nel tempo. L'andamento del fabbisogno è molto vario nel tempo (giorni, ore, mesi). Le fonti sono varie perché è necessario avere una adeguata adattabilità al fabbisogno, e l'accumulo di energia non è facile ed esteso.  L'idroelettrico (programmabile) è ormai al massimo, perché gli specchi d'acqua sfruttabili sono quasi al limite. Con quelle rinnovabili non programmabili è difficile ottenere di più in maniera affidabile.\\
+Confronto tra i profili di produzione francese (con molto nucleare) e italiano (con più rinnovabili ma anche più gas).\\
+Mappa dei consumi come indice di produttività della regione\\
+Interventi sulla rete elettrica al 2030 e 2034: molti collegamenti. Obiettivo: renderla più "magliata" per consentire continuità elettrica. L'Italia è avanzata come paese industriale proprio grazie all'affidabilità della rete elettrica.\\
+Crisi elettrica in Texas nel Febbraio 2021. Il Texas, per pagare meno tasse federali non è connesso alla rete elettrica federale (esistono una rete Western e una Eastern, con poche connessioni perché in mezzo ci sono le Montagne Rocciose) (dunque ha una rete propria, connessa con Messico e altri, ma molto più fragile: per questo è molto più esposto). Vedi immagini di Houston prima e dopo gli eventi (wikipedia). Le elevate spese italiane per l'interconnessione interna e con altri paesi ha grandi importanza per l'affidabilità della rete.\\
+Ipotizzato lo stoccaggio dell'energia, per aumentare la penetrazione delle fonti di energia non programmabili. Per piccole comunità elettriche può funzionare (UPS). Per potenze molto elevate, sopperire alla non-programmabilità con le attuali batterie non è possibile, per costi e disponibilità di materiali. Tra le direzioni di sperimentazione, superconduttori e riciclo di batterie dall'automotive. Si sente di alcuni paesi che ottengono l'80\% della loro energia dal fotovoltaico, ma si tratta sempre di paesi piccoli: impossibile per fabbisogni più elevati.\\
+\\
+\begin{dfn}[Energia assorbita ed erogata]
+	\[W(t) = \int_t^{t+\Delta t} p(t) dt = \int_t^{t+\Delta t} v(t) i(t)dt \]
+	Secondo la convenzione già illustrata per la potenza, si parla di energia assorbita $W_A$ ed energia erogata $W_E$.
+	Se $p(t)=P$, $W(\Delta t) = P \Delta t$.\\
+	Unità di misura comuni, oltre ai $J$, sono i $Wh$ e il suo multiplo $kWh$.
+\end{dfn}
+
+\subsection{Leggi costitutive - Introduzione e classificazione}
+Mentre le leggi di Kirchhoff sono \textsl{leggi topologiche}, studiamo ora le leggi che caratterizzano il comportamento di particolari componenti del circuito: le \textsl{leggi costitutive}, nella forma $f(v(t), i(t))=0$.
+Classificazione dei componenti:
+\begin{description}
+	\item [In base alla forma della legge costitutiva (LC)]\leavevmode
+	\begin{description}
+		\item[Senza memoria (anche detti resistivi, algebrici, adinamici)] LC algebrica. Es. $v(t)=\alpha i(t) + \gamma$.
+		\item [Con memoria (dinamici)] LC integro-differenziale. Es. $v(t)= \varepsilon \int_{-\infty}^t i(t)dt$
+	\end{description}
+	\item [In base alla linearità] lineari o non lineari.\leavevmode
+	\item [In base alla tempo-varianza]\leavevmode
+	\begin{description}
+		\item[Tempo-invarianti] La dipendenza temporale non è esplicita ($t$ compare soltanto come argomento di $v(t), i(t)$)
+		\item[Tempo-varianti] La dipendenza temporale è esplicita. Tutti i componenti lo sono, ma alcuni si possono approssimare a tempo-invarianti.
+	\end{description}
+	\item [In base ad attività o passività: ]\leavevmode
+	\begin{description}
+		\item[Passivi:] $W_A (t) =\int_{-\infty}^t p_A(t) dt \geq 0 \quad \forall t$. Il componente può anche erogare energia, ciò che lo definisce è che l'energia totale assorbita sia sempre positiva (può erogare soltanto energia assorbita, non ne genera).
+		\item[Attivi: ] $\exists t\ | \quad W_A (t) <0 $.
+	\end{description}
+	\item [In base alla potenza scambiata: ]\leavevmode
+	\begin{description}
+		\item [Dissipativi:] $p_A (t) \geq 0 \quad \forall t$
+		\item [Inerti: ] $p_A(t) = 0 \quad \forall t$
+	\end{description}
+	\item [In base al tipo di controllo] \leavevmode
+	\begin{description}
+		\item[controllati in tensione] Nella LC, $v(t)$ è la variabile indipendente
+		\item [controllati in corrente] Nella LC, $i(t)$ è la variabile indipendente.
+	\end{description}
+\end{description}
+\subsection {Collegamenti di bipoli in serie e parallelo}
+\begin{dfn}[Serie]
+	(1) Due bipoli sono collegati in serie se condividono un nodo a cui non afferiscono altri rami. Si osserva che in una configurazione del genere, i componenti in serie sono attraversati dalla stessa corrente; pertanto si può dare una definizione più generale di "collegamento in serie" (la 2).
+	(2)Due o più bipoli sono in serie se sono attraversati dalla stessa corrente.
+\end{dfn}
+\begin{dfn}[Parallelo]
+	(1) Due o più bipoli sono collegati in parallelo se sono connessi alla stessa coppia di nodi. Si osserva che in una configurazione del genere, i componenti in parallelo sono sottoposti alla medesima tensione; pertanto si può dare un'ulteriore definizione di "collegamento in parallelo" (la 2).
+	(2) Due o più bipoli sono in parallelo se sono sottoposti alla stessa tensione.
+\end{dfn}

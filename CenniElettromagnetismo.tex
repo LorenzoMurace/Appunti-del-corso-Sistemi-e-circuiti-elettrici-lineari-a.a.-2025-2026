@@ -1,0 +1,166 @@
+\section{Cenni di Elettromagnetismo}
+\subsection{Forza di Lorentz, campo elettrico e campo magnetico}
+Trattata perché interazione tra particelle cariche e campi.
+\begin{dfn}Forza di Lorentz
+\begin{equation} 
+    F=q (E + \vec v \times \vec B)
+\end{equation}
+\end{dfn}
+
+\begin{dfn}Campo elettrico.
+Si dice campo elettrostatico quello prodotto da cariche ferme. Le sue linee di campo (LDC) sono aperte (non sono presenti loop). Non distinti campo generato da cariche e campo generato da campi magnetici variabili perché hanno lo stesso effetto sulle cariche.
+Se $\vec v=0$ ,
+\begin{equation} 
+    \vec E = \frac{\vec F}{q}
+\end{equation}
+\end{dfn}
+
+\begin{dfn}Campo di induzione magnetica. Se $\vec E = 0$,
+\begin{equation} 
+        B = \frac{F}{qvsin(\theta)}
+\end{equation}
+\end{dfn}
+Il verso è dato da regola della mano destra, con $\theta$ angolo racchiuso tra i vettori $\vec v$ e $\vec B$. Le linee di campo magnetico escono dal polo nord (rosso) e entrano nel polo sud (nero). I poli magnetici terrestri sono invertiti rispetto a quelli geografici (per cui le linee escono dal polo sud della Terra e vanno al polo nord)
+
+\subsection{Equazioni di Maxwell}
+Sia nel vuoto sia nella materia. 
+\subsubsection{Legge di Gauss per $\vec E$}
+\begin{legge}[Legge di Gauss per E]
+    (Le cariche positive sono sorgenti del campo; le cariche negative sono pozzi.) In ogni punto dello spazio, la divergenza del campo elettrico è direttamente proporzionale alla densità di carica volumetrica nel punto. Il flusso attraverso una superficie chiusa è direttamente proporzionale alla carica netta racchiusa.
+\end{legge}
+\begin{equation}
+    \nabla \cdot E = \frac{\rho}{\varepsilon_0}\tag{Legge di Gauss per E in forma locale}
+\end{equation}
+Data definizione di divergenza come limite del flusso per unità infinitesima di volume, densità volumetrica, costante di dielettrica del vuoto $\varepsilon_0$
+
+\begin{equation}
+    \oint_S \vec E \cdot d\vec S = \frac{Q}{\varepsilon_0}\tag{Legge di Gauss per E in forma integrale}
+\end{equation}
+
+\subsubsection{Legge di Gauss per $\vec B$}
+\begin{legge}[Legge di Gauss per B]
+    (Non esistono monopoli magnetici.) Il flusso del campo magnetico attraverso qualunque superficie chiusa è nullo
+\end{legge}
+
+\begin{equation}
+    \nabla \cdot E = 0\tag{Legge di Gauss per B in forma locale}
+\end{equation}
+
+\begin{equation}
+    \oint_S \vec E \cdot d\vec S = 0\tag{Legge di Gauss per B in forma integrale}
+\end{equation}
+\begin{dfn}[Campo solenoidale]
+Un campo che ha sempre flusso nullo attraverso una superficie chiusa si dice solenoidale.
+\end{dfn}
+\begin{thr}[Relazione tra campi e potenziale vettore]
+Un campo solenoidale $\vec B$ ammette sempre un campo vettoriale potenziale, detto potenziale vettore $\vec A$, tale che $\vec B = \nabla \times \vec A $.
+\end{thr}
+\subsubsection{Legge di Faraday-Neumann-Lenz}
+\begin{legge}[Legge di Faraday-Neumann-Lenz]
+Il rotore del campo elettrico è dato dalla derivata parziale di B rispetto al tempo, cambiata di segno (Lenz). La circuitazione di $\vec E$ lungo una curva chiusa $\Gamma$ è uguale alla derivata temporale del flusso di $\vec B$ concatenato\footnote{Per tutti i campi solenoidali, si dimostra il valore del flusso non dipende dalla superficie S che il campo attraversa ma soltanto dal bordo di tale superficie S, $\Gamma$, a cui il flusso viene dunque detto \textit{concatenato}} a $\Gamma$. Le variazioni temporali di $\vec B$ generano un $\vec E$ le cui linee di campo sono chiuse attorno a $\frac{\partial\vec B}{\partial t}$, dunque circolano attorno a $\vec B$. 
+\end{legge} 
+\begin{equation}
+    \nabla \times \vec E = -\frac{\partial\vec B}{\partial t}\tag{Legge di Faraday in forma locale}
+\end{equation}
+\begin{dfn}[Rotore ] Limite della circuitazione per unità infinitesime di superficie. Calcolabile come determinante formale della matrice con righe (1) i versori, (2) gli operatori derivata parziale e (3) le componenti del vettore (campo vettoriale) a cui è applicato l'operatore.
+\end{dfn}
+Passaggio alla forma integral tramite il Teorema di Stokes.
+\begin{equation}
+    \oint_\Gamma \vec E \cdot d\vec l = -\frac{\partial\Phi_B}{\partial t}\tag{Legge di Faraday in forma integrale}
+\end{equation}
+\begin{es}
+Si consideri un filo di rame chiuso $\Gamma$ sospeso sopra un magnete permanente, e una superficie $S$ che abbia come bordo $\Gamma$. 
+\begin{itemize}
+    \item Se i due oggetti sono fermi uno rispetto all'altro. Il flusso di $\vec B$ attraverso $S$ è diverso da 0, ma la sua derivata è nulla. Dunque la circuitazione del campo magnetico lungo $\Gamma$ è nulla e non si ha corrente.
+    \item Se $v \neq 0$, il flusso di $\vec B$ attraverso $S$ è variabile. Per la legge di Faraday si instaura una circuitazione di $\vec E$ lungo $\Gamma$ e dunque una corrente.
+\end{itemize} 
+\end{es}
+
+\begin{dfn}[(provvisoria) forza elettromotrice (f.e.m.)]
+Lavoro per unità di carica compiuto da campi non conservativi (o campi di origine non elettrica).
+
+Visto come generato da $\vec E$ generato per induzione, ma potrebbe essere anche una batteria: il concetto dovrà dunque essere generalizzato.
+\end{dfn}
+\subsubsection{Legge di Ampère- Maxwell}
+\begin{legge}[Legge di Ampère- Maxwell]
+ .\\La densità di corrente totale $\vec J_t = \vec J+\frac{\partial\varepsilon_0\vec E}{\partial t}$ produce un $\vec B$. Le LDC di $\vec B$ sono avvolte attorno a quelle di $\vec J_t$.
+ 
+\begin{equation}\tag{Legge di Ampère-Maxwell in forma locale}
+\nabla \times (\frac{1}{\mu_0} \vec B) = \vec J + \frac{\partial\varepsilon_0\vec E}{\partial t}
+\end{equation}
+
+\begin{equation}\tag{Ampère-Maxwell in forma integrale}
+\oint_\Gamma \frac{1}{\mu_0}\vec B \cdot d \vec l = \int_S \vec J \cdot d \vec S + \int_S \frac{\partial \varepsilon \vec E}{\partial t}\cdot d \vec S
+\end{equation}
+$\mu_0$ permeabilità magnetica del vuoto.\\
+$\vec J$ densità di corrente \textsl{di conduzione} ($\vec J =\rho \vec v;\ i=\int\vec J \cdot d\vec S$). \\
+\end{legge}
+$F=\oint_\Gamma \frac{1}{\mu_0}\vec B \cdot d \vec l$ è detta \textit{forza magnetomotrice}, in analogia con la forza elettromotrice nella Legge di Faraday. Scriviamo $\mu_0$ all'interno dell'integrale al primo membro per rendere evidente che si tratta di una uguaglianza tra correnti all'osservazione del secondo membro.
+
+Proprietà: $\vec J_t$ è solenoidale.
+\[
+\nabla \cdot ( \nabla \times (\frac{1}{\mu_0} \vec B)) = \nabla \cdot (\frac{\partial\varepsilon_0\vec E}{\partial t})) 
+\]
+Siccome il primo membro è uguale a 0 per le proprietà degli operatori differenziali, anche $\nabla \cdot J_t = 0$, cioè $\vec J_t$ è solenoidale.\\
+Dunque valgono le stesse proprietà osservate sopra per la circuitazione di $\vec E$:
+\begin{itemize}
+\item $\oint_S \vec J_t \cdot d \vec S = 0 \quad \forall S\  chiusa$
+\item Le LDC sono chiuse
+\item $\int_S \vec J_t \cdot d \vec S$ è un flusso concatenato a $\Gamma$ bordo di $S$.
+\end{itemize}
+
+Osservazione:
+\[
+\oint_\Gamma 1/\mu_0 \vec B\cdot d \vec l = \int_S \vec J_t \cdot d \vec S
+\]
+La circuitazione di $1/\mu_0\vec B$ lungo una curva chiusa $\Gamma$ è pari al flusso di $\vec J_t$ concatenato con $\Gamma$.Questo fa sì che possa circolare corrente anche in un circuito aperto, finché si ha una variazione di campo magnetico.
+\subsection{Proprietà dei campi solenoidali ($\vec B, \vec J_t$)}
+
+Indichiamo con $\vec U$ un campo solenoidale.\\ Ricordiamo il risultato ottenuto sopra: $\nabla \cdot \vec U = 0 \iff\oint_S\vec U \cdot d \vec S = 0$.
+
+\begin{dfn}[Tronco di tubo di flusso]
+Superficie tubolare definita dalle LDC di $\vec U$ tangenti a due curve chiuse $\Gamma_1$ e $\Gamma_2$, che delimitano superfici $S_1$ e $S_2$.
+Chiamiamo $S_l$ la superficie laterale del tubo, con normale $\hat n_l$. La superficie del tronco di tubo di flusso è $S= S_l \cup  S_1 \cup S_2$. S è chiusa.
+\end{dfn}
+Consideriamo il flusso di $\vec U$ attraverso la superficie $S$, per trarne alcune conclusioni.
+
+\[
+\oint_S \vec U \cdot d \vec S = -\int_{S_1} \vec U \cdot d \vec S +\int_{S_2} \vec U \cdot d \vec S + \int_{S_l} \vec U \cdot d \vec S\]
+I segni nell'espressione sono scelti in modo che la normale punti sempre all'esterno, mentre il verso di percorrenza della curva è determinato dalla direzione delle LDC. \\
+$\oint_S \vec U \cdot d \vec S = 0$ per definizione di campo solenoidale.\\
+$\int_{S_l} \vec U \cdot d \vec S = 0$ Perché la superficie è parallela alle linee di flusso per costruzione.\\
+Pertanto, $\int_{S_1} \vec U \cdot d \vec S = \int_{S_2} \vec U \cdot d \vec S$. Da cui si ricava che il flusso di $\vec U$ attraverso qualunque sezione del tubo di flusso è costante. 
+Siccome:
+\begin{itemize}
+    \item $\Gamma_1$ e $\Gamma_2$ sono arbitrarie.
+    \item $\vec U$ è solenoidale, quindi le LDC sono chiuse.
+\end{itemize}
+Dunque, i tubi di flusso di $\vec U$ sono chiusi e $\int_S \vec U \cdot d \vec S = cost \qquad \forall S \ sezione\ del\ tubo$.
+Si osservi che $\int_S \vec U \cdot d \vec S = i$, dunque la corrente è la stessa lungo ogni sezione di un tubo di flusso, ed è possibile parlare del flusso di $\vec J_t$ (corrente) relativo all'intero tubo di flusso. 
+\begin{dfn}[Circuito Elettrico]
+Tubo di flusso (totale, considerato nella sua interezza) di $\vec J_t$.\\
+Proprio per la proprietà osservata sopra, il circuito è definito proprio dal fatto che è attraversato dalla stessa corrente in ogni punto.
+\end{dfn}
+
+\begin{dfn}[Circuito Magnetico]
+Tubo di flusso (totale, considerato nella sua interezza) di $\vec B$.\\
+(Non saranno trattati nel corso)
+\end{dfn}
+
+\subsection{Equazione di continuità}
+\begin{legge}[Equazione di Continuità (di conservazione della carica)]
+La corrente di conduzione uscente da una superficie chiusa $S$ è pari alla diminuzione della carica $Q$ in essa contenuta per unità di tempo.
+
+\begin{equation} \tag{Equazione di continuità in forma locale}
+\frac{\partial \rho}{\partial t} + \nabla \cdot \vec J = 0 
+\end{equation}
+$\vec J$ è corrente di conduzione.
+Equazione di conservazione.
+Tramite il Teorema della Divergenza (prima separiamo i membri e integriamo sul volume)
+\[
+\oint_S\vec J \cdot d \vec S = -\frac{d}{dt} \int_V\rho dv
+\]
+\begin{equation} \tag{Equazione di continuità in forma integrale}
+i_c(t) = -\frac{d}{dt}Q
+\end{equation}
+\end{legge}

@@ -1,0 +1,34 @@
+\section{Validità dei circuiti a parametri concentrati}
+Ricordiamo che le Leggi di Kirchhoff derivano dall'ipotesi di completo isolamento dei componenti, cioè dall'assenza di variazione di campo di induzione magnetica e di campo elettrico al di fuori dei componenti circuitali.
+
+\[\nabla \times \vec E = -\frac{\partial \vec B}{\partial t} \longrightarrow \frac{\partial \vec B}{\partial t}\approx 0 \Longrightarrow \nabla \times \vec E = 0 \Longrightarrow LKT\]
+
+\[\nabla \times \vec H = \vec J + \frac{\partial \vec D}{\partial t} \longrightarrow \frac{\partial \vec D}{\partial t}\approx 0 \Longrightarrow \nabla \times \vec H = \vec J \Longrightarrow LKC\]
+
+In DC le due condizioni sopra indicate sono sempre vere: il regime è stazionario dunque $\frac{d}{dt} = 0$. In AC e in transitorio, tanto più alta è la frequenza di oscillazione tanto maggiori sono i valori delle derivate, perciò è legittimo porsi il problema di quale sia la frequenza per la quale il modello a parametri concentrati è completamente inefficace, e dà dunque predizioni inaccurate. Procediamo dunque a studiare un criterio veloce, per quanto rudimentale, per determinare quantitativamente il limite dell'applicazione del modello a parametri concentrati a specifici circuiti.
+
+\subsection{Criterio del tempo di transito}
+Consideriamo un frequenza $f$ caratteristica del circuito in analisi. Per un transitorio non si può considerare una frequenza unica, tuttavia in prima approssimazione il ragionamento può essere analogo. Per il circuito in analisi, vale dunque che il periodo è $T = \frac{1}{f}$.\\
+Detti $\tau_P$ \textit{ritardo di propagazione}, $d_{max}$ la massima distanza tra due punti del circuito e $c$ la velocità della luce, il modello a parametri concentrati è valido se risulta:
+\[T \gg \tau_P = \frac{d_{max}}{c}\]
+Se questo è valido, infatti, le variazioni dei campi sono abbastanza lente da permettere di considerare $\vec B$ e $\vec D$ circa costanti nel tempo durante $\tau_P$. 
+Osserviamo dunque quali sono le dimensioni massime di un circuito a diverse frequenze comuni per alcune applicazioni. In gran parte delle applicazioni attuali, il modello a parametri concentrati risulta sufficiente per una buona progettazione. Soprattutto su piccola scala, e per elevata precisione, è possibile scontrarsi con i limiti: in tal caso è necessario fare riferimento a teorie più complesse, ripartendo dalle Leggi di Maxwell. In realtà, inoltre, per tali scopi è spesso indispensabile anche tenere conto di fenomeni quantistici.
+\begin{center}
+	% 2. Aumenta l'altezza delle righe (2 volte il normale)
+	\renewcommand{\arraystretch}{2.5}
+	
+	% 3. Aumenta lo spazio laterale nelle celle (padding orizzontale)
+	\setlength{\tabcolsep}{25pt}
+	\begin{tabular}{c|c|c}
+		
+		\textbf{$f$} &\textbf{$T$} & \textbf{$d_max$}\\ % Intestazione della tabella in modalità matematica
+		\hline % Linea orizzontale sotto l'intestazione
+		$50\ Hz$ & $20\ ms$ & $6000\ km$ \\
+
+		$1\ MHz$ & $1\ \mu s$ & $300\ m$\\
+		
+		$1\ GHz$ & $1\ ns$ & $0,3\ m$\\
+		
+		$10\ GHz$ & $100\ ps$ & $3\ cm$\\
+	\end{tabular}\\
+\end{center}
